@@ -1,0 +1,120 @@
+import React, { useState, useEffect} from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { useHistory } from "react-router-dom";
+import queryString from 'query-string';
+import { setPage } from '../actions/bookActions'
+
+import '../styles/Pagination.css';
+
+/**
+ * 
+ * @param {*} props 
+ */
+const Pagination = (props) => {
+    const BOOKS_PER_PAGE = 18;
+    const history = useHistory();
+    const [pages, setPages] = useState([]);
+
+    useEffect(() => {
+        setPages(generatePages(props.page, Math.ceil(props.count / BOOKS_PER_PAGE), props.setPage));
+    }, [props.count, props.page]);
+
+    /**
+     * returns an array of text for pagination buttons
+     */
+    const generatePages = (pg, totalPages, setPage) => {
+        const PREVIOUS = 'Previous';
+        const NEXT = 'Next';
+        
+        var pagination = [];
+        var page = Number(pg);
+        let startPage = Math.max(1, page-2);
+        let endPage = Math.min(startPage+4, totalPages)
+        let i = startPage;
+
+        // create previous link
+        if (page === 1) {
+            pagination.push(disabledPage(PREVIOUS, PREVIOUS));
+        } else {
+            pagination.push(abledPage(PREVIOUS, (page - 1), setPage));
+        }
+
+        // create number pages
+        while (i <= endPage) {
+            if (i === page) {
+                pagination.push(activePage(i));
+            } else if (i <= totalPages) {
+                pagination.push(abledPage(i, i, setPage));
+            }
+            i += 1;
+        }
+        
+        // create next link
+        if (page !== totalPages) {
+            pagination.push(abledPage(NEXT, page + 1, setPage));
+        } else {
+            pagination.push(disabledPage(NEXT, NEXT));    
+        }
+        return pagination;
+    }
+
+    /**
+     *   render current page number
+     */
+    const activePage = (page) => {
+        return (
+            <div key={page} className="page-btn">
+                <button type="button" className="btn btn-dark" disabled>{page.toString()}</button>
+            </div>
+        )
+    }
+
+    /**
+     * render disabled page number
+     */
+    const disabledPage = (page, label) => {
+        return (
+            <div key={label} className="page-btn">
+                <button type="button" className="btn btn-light" disabled>{page}</button> 
+            </div>
+        )
+    }
+
+    /**
+     * render clickable page number
+     */
+    const abledPage = (label, page) => {
+        return (
+            <div key={label} className="page-btn">
+                <button type="button" className="btn btn-link" onClick={() => navigateToPage(page)}>{label}</button> 
+            </div>
+        )
+    }
+
+    const navigateToPage = (page) => {
+        var queryDict = queryString.parse(history.location.search);
+        queryDict.pg = page;
+        history.push(history.location.pathname + '?'+ queryString.stringify(queryDict));
+    }
+
+    return (
+        <nav className='paginationWrapper'>
+            <div className="paginationContent justify-content-center">
+                {pages.map(p => p)}
+            </div>
+        </nav>
+    );
+}
+
+
+
+const  mapStateToProps = (state) => {
+  return { page: state.books.page, count: state.books.count }
+}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({setPage}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pagination);

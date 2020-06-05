@@ -1,0 +1,111 @@
+.card-container-wrapper {
+    display: block;
+    width: 100%;
+
+}
+
+.card-container-content {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    min-height: 100vh/2;
+    font-size: calc(10px + 2vmin);
+    /* color: white; */
+}
+
+.card-container-books {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    /* background-color: aliceblue; */
+}
+
+.section-break {
+    width: 80%;
+}
+
+
+/**
+* Book Card css
+*/
+
+.book-card-wrapper {
+    max-height: 350px;
+    width: auto;   
+    margin: 40px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.book-card-content {
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+
+.book-card-image-button {
+    background-color: unset;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+
+}
+
+.book-card-image {
+    width: calc(150px + 2vw);
+    height: auto;
+}
+
+.book-card-info {
+    text-align: left;
+    padding: 10px 25px;
+    width: calc(250px + 1vw);
+    height: auto;
+    /* background-color: beige; */
+}
+
+.book-card-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.book-card-author { 
+    font-size: 14px;
+}
+
+.book-card-year {
+    font-size: 14px;
+}
+
+.book-card-availability {
+    font-size: 14px;
+}
+
+
+/*
+    Three books per row
+*/
+@media only screen and (min-width: 1590px) {
+    .card-container-books {
+        width: 1580px;
+    }
+}
+
+/*
+    Two books per row
+*/
+@media only screen and (max-width: 1589px) {
+    .card-container-books {
+        width: 1050px;
+    }
+}
+
+/*
+    One book per row
+*/
+@media only screen and (max-width: 1100px) {
+  .card-container-books {
+        width: 520px;
+    }
+}
