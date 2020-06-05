@@ -18,24 +18,28 @@ const NewReviewCard = (props) => {
     const [ratingStyle, setRatingStyle] = useState({}); // used to hide and show rating on toggle
     const [hideReviewToggle, setHideReviewToggle] = useState(false); // disable review input
 
-    // Missing Error Messaging
+    const validateForm = () => {
+        return newReview !== '' && newRating > 0;
+    }
 
+    const clearForm = () => {
+        setNewReview(CLEAR_REVIEW);
+        setNewRating(CLEAR_RATING);
+    }
+
+
+    // Missing Input Error Messaging
     const onHandleChange = (e) => {
-        
         if (!e.target) {
-            // record user rating
-            // is a constant here
             setNewRating(e);
             return;
         }
 
-        e.persist();
-
+        e.persist()
         if (e.target.id === "hideNewReview") {
             // toggle 
             setHideReviewToggle(e.target.checked);
-            setNewReview(CLEAR_REVIEW);
-            setNewRating(CLEAR_RATING);
+            clearForm();
             setRatingStyle(!hideReviewToggle ? {visibility: 'hidden'} : {});
             return;
         } 
@@ -44,16 +48,13 @@ const NewReviewCard = (props) => {
         setNewReview(e.target.value);
     }
 
-    const validateForm = () => {
-        return newReview !== '' && newRating > 0;
-    }
-
     const onCancel = () => {
         setHideReviewToggle(false);
-        setNewReview(CLEAR_REVIEW);
-        setNewRating(CLEAR_RATING);
+        clearForm();
         props.onCancel();
+        setRatingStyle({})
     }
+
 
     if (!props.visible) return null;
     
