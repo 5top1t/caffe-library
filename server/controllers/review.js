@@ -42,11 +42,8 @@ checkIsbn = function(req, res) {
   return: returns a review
 */
 getReviewsByIsbn = async (req, res) => {
-
-  console.log({route: 'getReviewsByIsbn', isbn: req.params.isbn });
   checkIsbn(req, res);
   await Review.find({isbn: req.params.isbn}).then(function(reviews) {
-      console.log({reviews})
       return res
         .status(200)
         .json({
@@ -54,11 +51,11 @@ getReviewsByIsbn = async (req, res) => {
           data: reviews,
         });
     }).catch(error => {  
-      console.log({msg: 'err', error});  
-      return res.status(400).json({
-          success: false,
-          error,
-          message: 'Error occured!'
+        console.log({msg: 'err', error});  
+        return res.status(400).json({
+            success: false,
+            error,
+            message: 'Error occured!'
         });
       }
     );
@@ -70,8 +67,6 @@ getReviewsByIsbn = async (req, res) => {
   return: returns a rating, count
 */
 getRatingByIsbn = async (req, res) => {
-
-  console.log({route: 'getReviewsByIsbn', isbn: req.params.isbn });
   checkIsbn(req, res);
   await Review.aggregate(
      [
@@ -86,7 +81,6 @@ getRatingByIsbn = async (req, res) => {
         }
       ]
     ).then(function(result) {
-      console.log({result})
       var rating = 0;
       var count = 0;
       if (result.length) {
@@ -119,8 +113,6 @@ getRatingByIsbn = async (req, res) => {
   return: returns the created review
 */
 createReview = (req, res) => {
-  console.log({route: 'createReview' });
-  console.log({ createBody: req.body});
   checkBody(req, res);
   const review = new Review(req.body);
   review
@@ -149,7 +141,6 @@ createReview = (req, res) => {
   return: returns the delete review
 */
 deleteReviewById = async (req, res) => {
-  console.log({route: 'deleteReview', id: req.params.id });
   checkId(req, res);
   await Review.findOneAndDelete({ _id: req.params.id }).then(function(review) {
     return res.status(200)
@@ -175,8 +166,6 @@ deleteReviewById = async (req, res) => {
  * to clear all review
  */
 deleteAllReviews = async (req, res) => {
-  //console.log({route: 'delete', id: req.params.id });
-  console.log({route: 'deleteAllReviews'});
   await Review.find({}).then(allReviews => {
     let i = 0;
     for (i = 0;i < allReviews.length; i++) {
@@ -196,11 +185,7 @@ deleteAllReviews = async (req, res) => {
             message: 'Error occured!'
           });
   });
-
- 
 }
-
-
 
 
 module.exports = {
@@ -209,4 +194,4 @@ module.exports = {
     createReview,
     deleteReviewById,
     deleteAllReviews
-}
+};

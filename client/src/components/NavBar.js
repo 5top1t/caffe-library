@@ -12,8 +12,10 @@ import {
 } from '../actions/bookActions'
 import '../styles/Nav.css'
 
-
-
+/**
+ * 
+ * @param {*} props 
+ */
 const NavBar = (props) => {
   const PAGE_1 = 1
   const EMPTY_FILTER = []
@@ -35,6 +37,7 @@ const NavBar = (props) => {
     }
   }
 
+
   useEffect(() => { 
     setSearchField(props.query)
   }, [props.query, props.setPage, props.onFilter
@@ -45,6 +48,7 @@ const NavBar = (props) => {
   const onTextChange = (e) => {
     setSearchField(e.target.value)
   }
+
 
   // Submit query
   const onSearch = (e) => {
@@ -68,7 +72,6 @@ const NavBar = (props) => {
   }
 
 
-
   return (
     <div>
       <div className='nav-wrapper'>
@@ -88,7 +91,7 @@ const NavBar = (props) => {
               <form className='search-form' onSubmit={onSearch}>
                 <input type='text' className='form-control' value={searchField} placeholder='Search by title isbn or author...' aria-label='Username' aria-describedby='basic-addon1' onChange={onTextChange}/>
                 <div className='input-group-prepend'>
-                    <button className='btn btn-outline-secondary' type='button' onClick={onSearch} disabled={props.onFilter}>
+                    <button className='btn btn-outline-light' type='button' onClick={onSearch} disabled={props.onFilter}>
                         <svg className='bi bi-search' width='1em' height='1em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
                             <path fillRule='evenodd' d='M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z' clipRule='evenodd'/>
                             <path fillRule='evenodd' d='M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z' clipRule='evenodd'/>
@@ -103,6 +106,7 @@ const NavBar = (props) => {
     </div>
     )
 }
+
 
 const  mapStateToProps = state => {
   return { 

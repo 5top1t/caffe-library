@@ -5,11 +5,13 @@
     margin: 30px auto 0 auto;
 }
 
+
 .home-btn-content {
     display: flex;
     width: 70%;
     justify-content: flex-end;
 }
+
 
 .view-book-wrapper {
     width: 100%;
@@ -17,12 +19,14 @@
     margin-top: 50px;
 }
 
+
 .view-book-content {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     padding: 10px 15% 30px 15%;
 }
+
 
 /*
     Img column
@@ -32,13 +36,14 @@
     padding: 0 30px 30px 30px;
     min-width: 400px;
     width: 40%;
-
 }
+
 
 .view-image-column > img {
     width: 100%;
     height: auto;
 }
+
 
 /*
  Info Column
@@ -49,6 +54,7 @@
     width: 40%;
 }
 
+
 /*
     Rating CSS
 */
@@ -56,24 +62,24 @@
     display: inline-flex;
 }
 
+
 .book-rating-count {
     margin: auto 10px;
     font-size: 14px;
-
 }
+
 
 /*
     Rent Return CSS
 */
-
 .view-book-buttons {
     display: flex;
     flex-flow: column;
 }
 
+
 .view-book-buttons > button {
     margin: 10px;
-    /* color: white; */
     font-weight: 600;
 }
 
@@ -87,10 +93,14 @@
     height: auto;
     margin: 0;
 }
+
+
 .review-container-header {
     display: block;
     font-weight: 1200;
 }
+
+
 .review-contianer-content {
     display: flex;
     flex-flow: column wrap;
@@ -99,6 +109,7 @@
     font-size: 14px;
 }
 
+
 /*
     New Review Form 
 */
@@ -106,6 +117,7 @@
     margin: 10px 25px;
     color: black
 }
+
 
 .no-review-content {
     display: flex;
@@ -120,15 +132,18 @@
     background-color:darkcyan;
 }
 
+
 .check-label {
     display: flex;
     margin: auto 5px;
     width: auto
 }
 
+
 .new-review-content > textarea {
     font-size: 14px;
 }
+
 
 .new-review-buttons {
     display: flex;
@@ -146,16 +161,20 @@
     height: auto;
     margin: 10px;
 }
+
+
 .review-header {
     display: flex;
     margin: 5px 0;
 }
+
 
 .review-date {
     font-size: 14px;
     font-weight: 1600;
     margin: auto 15px auto 0;
 }
+
 
 .review-text {
     font-size: 14px;

@@ -21,8 +21,6 @@ app.use('/api/review', reviewRouter);
 app.use('/api/book', bookRouter);
 
 
-
-
 app.listen(apiPort, () => {
-  console.log(`[Hack.Diversity React Template] - Server running on port ${apiPort}`);
+  console.log(`[React Caffe-Library] - Server running on port ${apiPort}`);
 });

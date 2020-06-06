@@ -4,14 +4,15 @@
     /* transition: background-position 350ms ease-in; */
 }
 
+
 .filter-wrapper-content {
     position: fixed;
     display: flex;
     flex-flow: row;
     width: 100%;
-
     top: 0;
 }
+
 
 .filter-wrapper-filters {
     position: relative;
@@ -19,14 +20,15 @@
     height: 100vh;
     color: white;
     opacity: 1;
-    /* background-color: #f4a261; */
-    background-color: #f4a261;
+    background-color: #457b9d;
 }
+
 
 .filter-content-form {
     overflow-y:scroll;
     height: 85%;
 }
+
 
 .filter-wrapper-opaque {
     display: flex;
@@ -47,22 +49,26 @@
     padding: 30px 30px 20px 30px;
 }
 
+
 .filter-heading > i {
     font-size: 24px;
     margin: 0 5px;
 }
 
+
 .filter-heading > h4 {
     font-weight: 1800;
 }
 
+
 /**
-Filter sections
+    Filter sections
 */
 .form-group {
     margin: 0;
     padding: 0;
 }
+
 
 .filter-section {
     display: flex;
@@ -73,16 +79,22 @@ Filter sections
     width: 100%;
 }
 
+
 .filter-section-title {
     display: flex;
     justify-content: center;
 }
 
+
 .filter-section-title > p {
     font-size: 12px;
     font-weight: 800;
-
 }
+
+.field-no-result {
+    margin: 5px 20px;
+}
+
 
 .form-check {
     display: flex;
@@ -93,11 +105,13 @@ Filter sections
     height: auto;
 }
 
+
 .form-check-input {
     margin: auto 0 auto 5px;
     padding: 0;
     background-color:darkcyan;
 }
+
 
 .form-check-label {
     display: flex;
@@ -105,11 +119,13 @@ Filter sections
     width: auto
 }
 
+
 .label-count {
-    color: darkcyan;
+    color: #a8dadc;
     text-decoration: underline;
     margin: 0 5px;
 }
+
 
 .filter-section-wrapper {
     display: flex;
@@ -119,4 +135,3 @@ Filter sections
     justify-content: flex-start;
     font-size: 10px;
 }
-

@@ -1,5 +1,3 @@
-
-
 import BookCard from './BookCard'
 import BookCardContainer from './BookCardContainer'
 import Filter from './Filter'
@@ -10,9 +8,6 @@ import NewReviewCard from './NewReviewCard'
 import Pagination from './Pagination'
 import ReviewCardContainer from './ReviewCardContainer'
 import ViewReviewCard from './ViewReviewCard'
-
-
-
 
 
 export {

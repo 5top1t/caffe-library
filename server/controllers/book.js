@@ -1,9 +1,9 @@
-const Book = require('../models/book');
+const Book = require('../models/book')
 
 
 getBooks = async (req, res) => {
-  return queryBooks(req, res);
-};
+  return queryBooks(req, res)
+}
 
 
 queryBooks = async (req, res) => {
@@ -16,34 +16,29 @@ queryBooks = async (req, res) => {
    * pg: page number int
    */
   // Default values
-  var text = req.query.q || '';
-  var authors = req.query.a ||  [/.*/]; // regex to match all authors
-  var publication_years = req.query.y || [] ;
-  var unavailable = req.query.unav === 'true' || false;
-  var page = req.query.pg || "1";
-  console.log({route: 'queryBooks' });
+  var text = req.query.q || ''
+  var authors = req.query.a ||  [/.*/] // regex to match all authors
+  var publication_years = req.query.y || [] 
+  var unavailable = req.query.unav === 'true' || false
+  var page = req.query.pg || "1"
 
-  
   if (!page || page < 1) {
-    console.log('no page');
-    page = 1;
+    page = 1
   }
   if (typeof authors === 'string' || authors instanceof String) {
-    authors = [authors];
+    authors = [authors]
   }
   if (typeof publication_years === 'string' || publication_years instanceof String) {
-    publication_years = [publication_years];
+    publication_years = [publication_years]
   }
   for (let i = 0; i < publication_years.length; i++) {
-    publication_years[i] = Number(publication_years[i]);
+    publication_years[i] = Number(publication_years[i])
   }
 
-  //console.log(buildQuery(text, authors, publication_years, unavailable));
-  var size = 18;
-  var skip = size * (page - 1);
-  text = text.trim();
+  var size = 18
+  var skip = size * (page - 1)
+  text = text.trim()
 
-  //console.log({page, text});
   await Book.aggregate(
     [
       {
@@ -79,10 +74,10 @@ queryBooks = async (req, res) => {
     let result = {
       books: queryResult[0].books,
     }
-    result.count = result.books.length;
-    result.count = result.books.length? queryResult[0].count[0].count : 0;
-    result.authors = result.books.length? queryResult[0].authors : [];
-    result.years = result.books.length? queryResult[0].years : [];
+    result.count = result.books.length
+    result.count = result.books.length? queryResult[0].count[0].count : 0
+    result.authors = result.books.length? queryResult[0].authors : []
+    result.years = result.books.length? queryResult[0].years : []
     return res
       .status(200)
       .json({
@@ -91,45 +86,41 @@ queryBooks = async (req, res) => {
         data: result.books,
         years: result.years,
         authors: result.authors
-      });
+      })
   }).catch(error => {      
-    //console.log({error})
-    return res.status(400).json({
-        success: false,
-        error,
-        message: 'Error occured!'
-      });
+      console.log({error})
+      return res.status(400).json({
+          success: false,
+          error,
+          message: 'Error occured!'
+        })
     }
   )
 }
 
 getBookByIsbn = async (req, res) => {
-  console.log('\n');
-  console.log({route: 'getBookByIsbn', isbn: req.params.isbn });
-  checkIsbn(req, res);
+  checkIsbn(req, res)
   await Book.findOne({isbn: req.params.isbn}).then(function(book) {
       return res
         .status(200)
         .json({
           success: true,
           data: book,
-        });
+        })
     }).catch(error => {      
       return res.status(400).json({
           success: false,
           error,
           message: 'Error occured!'
-        });
+        })
       }
-    );
-};
+    )
+}
 
 
 createBook = (req, res) => {
-  checkBody(req, res);
-  console.log('\n');
-  console.log({route: 'create' });
-  const book = new Book(req.body);
+  checkBody(req, res)
+  const book = new Book(req.body)
   book
     .save()
     .then(function() {
@@ -137,24 +128,22 @@ createBook = (req, res) => {
         success: true,
         isbn: book.isbn,
         message: 'Book created!',
-      });
+      })
     })
     .catch(error => {
       return res.status(400).json({
         success: false,
         error,
         message: 'Error occured!'
-      });
-    });
-};
+      })
+    })
+}
 
 
 rentBook = async (req, res) => {
-  console.log('\n');
-  console.log({route: 'rent', isbn: req.params.isbn });
-  checkIsbn(req, res);
+  checkIsbn(req, res)
   await Book.findOne({ isbn: req.params.isbn }).then(function(book) {
-    book.available -= 1;
+    book.available -= 1
     book
       .save()
       .then(() => {
@@ -164,26 +153,23 @@ rentBook = async (req, res) => {
             isbn: book.isbn,
             available: book.available,
             message: 'Enjoy your read!',
-          });
-      });
+          })
+      })
   }).catch(error => {     
         return res.status(400).json({
             success: false,
             error,
             message: 'Error occured!'
-          });
+          })
         }
-      );;
-};
+      )
+}
 
 
 returnBook = async (req, res) => {
-  console.log('\n');
-  console.log({route: 'return', isbn: req.params.isbn });
-  checkIsbn(req, res);
+  checkIsbn(req, res)
   await Book.findOne({ isbn: req.params.isbn }).then(function(book) {
-    book.available += 1;
-    console.log({book});
+    book.available += 1
     book
       .save()
       .then(() => {
@@ -193,40 +179,39 @@ returnBook = async (req, res) => {
             isbn: book.isbn,
             available: book.available,
             message: 'Thank you. Check out our other selections.',
-          });
+          })
       })
   }).catch(error => {
-        console.log(error)
-        return res.status(400).json({
-            success: false,
-            error,
-            message: 'Error occured!'
-          });
-        }
-      );;
-};
+      console.log(error)
+      return res.status(400).json({
+          success: false,
+          error,
+          message: 'Error occured!'
+        })
+      }
+    )
+}
 
 
 deleteBook = async (req, res) => {
-  console.log('\n');
-  console.log({route: 'delete', isbn: req.params.isbn });
-  checkIsbn(req, res);
+  checkIsbn(req, res)
   await Book.findOneAndDelete({ isbn: req.params.isbn }).then(function(book) {
     return res.status(200)
       .json({
         success: true,
         book,
         message: 'Book Deleted!',
-      });
+      })
     }).catch(error => {     
         return res.status(400).json({
             success: false,
             error,
             message: 'Error occured!'
-          });
+          })
         }
-      );
-};
+      )
+}
+
 
 /**
  * 
@@ -238,14 +223,6 @@ deleteBook = async (req, res) => {
  * builds a mongo db query given the filter paramns
  */
 const buildQuery = (text, authors, publication_years, unavailable) => {
-    /**
-   * Query options:
-   * text: searched string
-   * authors: authors names array
-   * publication_years: publication years array
-   * unav: copies == 0 a.k.a unavailable
-   */
-  console.log({unavailable})
   var query = 
     { 
       $match: { 
@@ -259,7 +236,6 @@ const buildQuery = (text, authors, publication_years, unavailable) => {
           { author: { 
             "$regex": text, "$options": "i" 
           }}
-
         ],
         author: { $in: authors },
         publication_year: {
@@ -270,7 +246,7 @@ const buildQuery = (text, authors, publication_years, unavailable) => {
         }
       } 
     }
-  return query;
+  return query
 }
 
 
@@ -283,7 +259,7 @@ checkIsbn = function(req, res) {
     return res.status(400).json({
       success: false,
       message: 'You must provide an isbn',
-    });
+    })
   }
 }
 
@@ -295,7 +271,7 @@ checkBody = function(req, res) {
     return res.status(400).json({
       success: false,
       message: 'You must provide an book.',
-    });
+    })
   }
 }
 
@@ -307,4 +283,4 @@ module.exports = {
   rentBook,
   returnBook,
   deleteBook
-};
+}

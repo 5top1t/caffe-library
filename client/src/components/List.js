@@ -1,7 +1,3 @@
-/**
- * Component used to represent any list of books
- * 
- */
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -28,13 +24,15 @@ import {
 
 import api from '../api'
 
-
-
+/**
+ * 
+ * @param {*} props 
+ */
 const List = (props) => {
   const history = useHistory()
   
   useEffect(() => {
-    // Make url query param for the backend
+    // Build url query param for the backend
     var a = props.queryAuthors.join('&a=')
     var y = props.queryYears.join('&y=')
     api.books.queryBooks(props.query, props.page, props.unavailable, a, y).then(res => {
@@ -50,8 +48,8 @@ const List = (props) => {
     })
   }, [props.page, props.query, props.queryAuthors, props.queryYears, props.unavailable])
 
-  const onClose = (unavailable, authors, publication_years) => {
-    var unavailableChanged = props.unavailable == !unavailable;
+  const onCloseSideBar = (unavailable, authors, publication_years) => {
+    var unavailableChanged = props.unavailable === !unavailable;
     props.setOnFilter(false)
     if (!authors.length && !publication_years.length && !unavailableChanged) return
     if (unavailableChanged) props.setUnavailable(unavailable)
@@ -65,9 +63,8 @@ const List = (props) => {
   }
 
 
-
   return (
-    <Filter show={props.onFilter} onClose={onClose} authors={[]}>
+    <Filter show={props.onFilter} onClose={onCloseSideBar} authors={[]}>
       <BookCardContainer>
         {props.books.map(book => (
             <BookCard key={book.isbn} book={book}></BookCard>
@@ -91,6 +88,7 @@ const  mapStateToProps = (state) => {
    }
 }
 
+
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({ 
     setBooks, 
@@ -104,5 +102,6 @@ const mapDispatchToProps = dispatch => {
     setUserAuthorsFilters,
     setUserPublicationYearsFilter }, dispatch)
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(List)
