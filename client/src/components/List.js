@@ -50,8 +50,8 @@ const List = (props) => {
     })
   }, [props.page, props.query, props.queryAuthors, props.queryYears, props.unavailable])
 
-  const onClose = (unavailable, authors, publication_years) => {
-    var unavailableChanged = props.unavailable == !unavailable;
+  const onCloseSideBar = (unavailable, authors, publication_years) => {
+    var unavailableChanged = props.unavailable === !unavailable;
     props.setOnFilter(false)
     if (!authors.length && !publication_years.length && !unavailableChanged) return
     if (unavailableChanged) props.setUnavailable(unavailable)
@@ -67,7 +67,7 @@ const List = (props) => {
 
 
   return (
-    <Filter show={props.onFilter} onClose={onClose} authors={[]}>
+    <Filter show={props.onFilter} onClose={onCloseSideBar} authors={[]}>
       <BookCardContainer>
         {props.books.map(book => (
             <BookCard key={book.isbn} book={book}></BookCard>
