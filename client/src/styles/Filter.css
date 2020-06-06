@@ -91,6 +91,10 @@
     font-weight: 800;
 }
 
+.field-no-result {
+    margin: 5px 20px;
+}
+
 
 .form-check {
     display: flex;
@@ -117,7 +121,7 @@
 
 
 .label-count {
-    color: darkcyan;
+    color: #a8dadc;
     text-decoration: underline;
     margin: 0 5px;
 }

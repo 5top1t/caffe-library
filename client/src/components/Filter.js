@@ -48,7 +48,7 @@ const Filter = (props) => {
                     </div>
                     <div className="filter-content-form">
                         <form id="unavailable" onChange={onHandleChange}>
-                            {unavailableFilter(unavailable)}
+                            {unavailableFilter(!props.count, unavailable)}
                         </form>
                         <form id="author" onChange={onHandleChange}>
                             {sectionFilter("Author", props.authors)}
@@ -70,7 +70,7 @@ const Filter = (props) => {
 }
 
 
-const unavailableFilter = (unavailable) => {
+const unavailableFilter = (empty, unavailable) => {
     return (
         <div className="filter-section">
             {filterSectionTiltle("Out of Stock")}
@@ -112,7 +112,7 @@ const emptyFilterSection = (title) => {
         <div className="filter-section">
             {filterSectionTiltle(title)}
             <div className="filter-section-wrapper">
-                <p>No result.</p>
+                <p className="field-no-result">No result.</p>
             </div>
         </div>
     )   
