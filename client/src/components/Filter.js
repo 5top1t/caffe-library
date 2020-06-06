@@ -1,12 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import '../styles/Category.css'
+import '../styles/Filter.css'
 
 /**
  * 
- * @param {onClose} props 
- * 
- * onClose is passed on props by list.js and expects the updated authors and years filter
+ * @param {*ss} props 
  */
 const Filter = (props) => {
     var userAuthors = []
@@ -16,11 +14,13 @@ const Filter = (props) => {
     const onHandleChange = (e) => {
         e.persist()
         var checked = []
+
         for (let i = 0; i < e.target.form.elements.length; i++) {
             if (e.target.form.elements[i].checked) {
                 checked.push(e.target.form.elements[i].id )
             }
         }
+
         if (e.target.form.id === 'author') {
             userAuthors = checked
             return
@@ -29,7 +29,6 @@ const Filter = (props) => {
             userYears = checked
             return;
         }
-
         unavailable = checked.length ? true : false;
     }
 
@@ -49,13 +48,13 @@ const Filter = (props) => {
                     </div>
                     <div className="filter-content-form">
                         <form id="unavailable" onChange={onHandleChange}>
-                            {unavailableFilter(unavailable)}
+                            {unavailableFilter(!props.count, unavailable)}
                         </form>
                         <form id="author" onChange={onHandleChange}>
-                            {authorsFilter(props.authors)}
+                            {sectionFilter("Author", props.authors)}
                         </form> 
                         <form id="year" onChange={onHandleChange}>
-                            {yearsFilter(props.years)}
+                            {sectionFilter("Publication Year", props.years)}
                         </form>
                     </div>
                 </div>
@@ -70,12 +69,11 @@ const Filter = (props) => {
     )    
 }
 
-const unavailableFilter = (unavailable) => {
+
+const unavailableFilter = (empty, unavailable) => {
     return (
         <div className="filter-section">
-            <div className="filter-section-title">
-                <p>Out of Stock</p>
-            </div>
+            {filterSectionTiltle("Out of Stock")}
             <div className="filter-section-wrapper">
                 <div className="author-filter-wrapper">
                     <div className="form-check">
@@ -88,78 +86,56 @@ const unavailableFilter = (unavailable) => {
             </div>
         </div>
     )
-
 }
 
-const authorsFilter = (authors) => {
-    if (!authors.length) {
-        return (
-            <div className="filter-section">
-                <div className="filter-section-title">
-                    <p>Author</p>
-                </div>
-                <div className="filter-section-wrapper">
-                    <p>No result.</p>
-                </div>
-            </div>
-        )  
+
+const sectionFilter = (title, fields) => {
+    if (!fields.length) {
+        return emptyFilterSection(title)
     }
+
     return (
         <div className="filter-section">
-            <div className="filter-section-title">
-                <p>Author</p>
-            </div>
+            {filterSectionTiltle(title)}
             <div className="filter-section-wrapper">
-                <div className="author-filter-wrapper">
-                    {authors.map(author => (
-                        <div className="author-filter-content form-group" key={author._id}>
-                            <div className="form-check">
-                                <input className="form-check-input" id={author._id} type="checkbox" />
-                                <label className="form-check-label" htmlFor="gridCheck">
-                                    {author._id}
-                                    <p className="label-count">{author.count}</p>
-                                </label>
-                            </div>
-                        </div>
-                    ))}
+                <div>
+                    {fields.map(field => { return filterSectionInput(field)})}
                 </div>
             </div>
         </div>
     )
 }
 
-const yearsFilter = (years) => {
-    if (!years.length) {
-        return (
-            <div className="filter-section">
-                <div className="filter-section-title">
-                    <p>Author</p>
-                </div>
-                <div className="filter-section-wrapper">
-                    <p>No result.</p>
-                </div>
-            </div>
-        )
-    }
+
+const emptyFilterSection = (title) => {
     return (
         <div className="filter-section">
-            <div className="filter-section-title">
-                <p>Publication Year</p>
-            </div>
+            {filterSectionTiltle(title)}
             <div className="filter-section-wrapper">
-                <div className="year-filter-wrapper">
-                    {years.map(year => (
-                        <div className="author-filter-content form-group" key={year._id}>
-                            <div className="form-check">
-                                <input className="form-check-input" id={year._id} type="checkbox" />
-                                <label className="form-check-label" htmlFor="gridCheck">
-                                    {year._id}
-                                    <p className="label-count">{year.count}</p>
-                                </label>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                <p className="field-no-result">No result.</p>
+            </div>
+        </div>
+    )   
+}
+
+
+const filterSectionTiltle = (title) => {
+    return (
+        <div className="filter-section-title">
+            <p>{title}</p>
+        </div>
+    )
+}
+
+const filterSectionInput = (field) => {
+    return (
+        <div className="form-group" key={field._id}>
+            <div className="form-check">
+                <input className="form-check-input" id={field._id} type="checkbox" />
+                <label className="form-check-label" htmlFor="gridCheck">
+                    {field._id}
+                    <p className="label-count">{field.count}</p>
+                </label>
             </div>
         </div>
     )
@@ -175,5 +151,6 @@ const  mapStateToProps = (state) => {
     unavailable: state.books.filters.unavailable
    }
 }
+
 
 export default connect(mapStateToProps)(Filter)

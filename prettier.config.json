@@ -1,0 +1,14 @@
+{
+  "trailingComma": "es5",
+  "tabWidth": 4,
+  "semi": false,
+  "ingleQuote": true,
+  "overrides": [
+    {
+      "files": ["client/src/styles/*", "server/*"],
+      "options": {
+        "semi": true
+      }
+    }
+  ]
+}
