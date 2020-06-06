@@ -1,87 +1,81 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react'
+import { useHistory } from "react-router-dom"
+import { connect } from 'react-redux'
 
-import 'materialize-css';
-import { Footer, ReviewCardContainer } from '../components';
+import 'materialize-css'
+import { Footer, ReviewCardContainer } from '../components'
 
-import ReactStars from 'react-stars';
-import api from '../api';
-import '../styles/View.css';
+import ReactStars from 'react-stars'
+import api from '../api'
+import '../styles/View.css'
+
 
 const View = (props) => {
-    const history = useHistory();
-    const [bookInfo, setBookInfo] = useState({});
-    const [reviews, setReviews] = useState([]);
-    const [isReviewVisible, setIsReviewVisible] = useState(false);
-    const [rating, setRating] = useState(0);
-    const [ratingCount, setRatingCount] = useState(0);
-
+    const history = useHistory()
+    const [bookInfo, setBookInfo] = useState({})
+    const [reviews, setReviews] = useState([])
+    const [isReviewVisible, setIsReviewVisible] = useState(false)
+    const [rating, setRating] = useState(0)
+    const [ratingCount, setRatingCount] = useState(0)
 
     useEffect(() => {
         api.books.getBookByIsbn(props.match.params.isbn).then(res => {
             if (res.data.success) {
-                setBookInfo(res.data.data);
+                setBookInfo(res.data.data)
                 api.reviews.getReviewsByIsbn(props.match.params.isbn).then(res => {
                     if (res.data.success) {
-                        setReviews(res.data.data);
-                        //console.log({res: res.data})
+                        setReviews(res.data.data)
                     }
-                });
+                })
                 api.reviews.getRatingByIsbn(props.match.params.isbn).then(res => {
                     if (res.data.success) {
-                        setRating(res.data.rating);
-                        setRatingCount(res.data.count);
-                        //console.log({res: res.data})
-                    }   
-                });
+                        setRating(res.data.rating)
+                        setRatingCount(res.data.count)
+                    }
+                })
             }
         }).catch(err => {
-            console.log(err);
-        });
-    }, [props.match.params.isbn, bookInfo.copies, bookInfo.available,]);
+            console.log(err)
+        })
+    }, [props.match.params.isbn, bookInfo.copies, bookInfo.available])
 
+    const goHome = () => {
+        history.push('/books/search?pg='+ props.page + '&q=' + props.query)
+    }
 
     const onRentBook = () => {
         api.books.rentBookByIsbn(bookInfo.isbn).then(result => {
             if (result.data.success) {
                 //console.log({ rentResult: result})
-                setBookInfo({...bookInfo, available: result.data.available});
+                setBookInfo({...bookInfo, available: result.data.available})
             }
-        });
+        })
     }
 
-    // Callback prop for new review submit book return
     const onReturnBook = (newRating, newReview) => {
-        setIsReviewVisible(false);
+        setIsReviewVisible(false)
         api.books.returnBookByIsbn(bookInfo.isbn).then(returnResult => {
             if (returnResult.data.success) {
-                setBookInfo({...bookInfo, available: returnResult.data.available});
+                setBookInfo({...bookInfo, available: returnResult.data.available})
                 if (newReview) {
                     api.reviews.insertReview({isbn: bookInfo.isbn, rating: newRating, review: newReview}).then(reviewResult => {
                         // update component
                         if (reviewResult.data.success) {
-                           setBookInfo({...bookInfo, isbn: reviewResult.data.isbn});
-                           onCancelReturn();
+                           setBookInfo({...bookInfo, isbn: reviewResult.data.isbn})
+                           onCancelReturn()
                         }
-                    });
+                    })
                 }
             }
-        }).catch(err => console.log({err}));
+        }).catch(err => console.log({err}))
     }
 
-    // Callback prop for new review component hide review form
     const onCancelReturn = () => {
-        setIsReviewVisible(false);
+        setIsReviewVisible(false)
     }
 
-    // Callback for return button to show review form
     const onShowReview = () => {
-        setIsReviewVisible(true);
-    }
-
-    const goHome = () => {
-        history.push('/books/search?pg='+ props.page + '&q=' + props.query);
+        setIsReviewVisible(true)
     }
 
     return (
@@ -120,7 +114,7 @@ const View = (props) => {
             </div>
             <Footer/>
         </div>
-    );
+    )
 }
 
 const mapStateToProps = (state) => {
@@ -131,4 +125,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps)(View);
+export default connect(mapStateToProps)(View)

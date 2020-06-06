@@ -5,6 +5,10 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
+/**
+ * 
+ * @param {book} props 
+ */
 const BookCard = (props) => {
   const history = useHistory()
   const url = '/book/view/' + props.book.isbn
@@ -28,5 +32,5 @@ const BookCard = (props) => {
   )
 }
 
-export default BookCard
 
+export default BookCard

@@ -3,14 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-
-// Constants/Styles
 import * as actions from './actions';
 import { routes } from './constants';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/App.css';
 
-// Static/Stateless
 import { View, Landing } from './pages';
 
 
@@ -36,5 +33,6 @@ const App = () => {
 const mapStateToProps = state => ({ ...state });
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

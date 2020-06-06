@@ -1,64 +1,58 @@
-import React, { useState } from 'react';
-import ReactStars from 'react-stars';
-import '../styles/View.css';
+import React, { useState } from 'react'
+import ReactStars from 'react-stars'
+import '../styles/View.css'
 
 /**
  * 
- * @param {*} props 
- * 
- * Return input to capture a user review
- * returns new review 
+ * @param {visible, onSubmit, onCancel} props 
  */
-
 const NewReviewCard = (props) => {
-    const CLEAR_REVIEW = '';
-    const CLEAR_RATING = 0;
-    const [newRating, setNewRating] = useState(0);
-    const [newReview, setNewReview] = useState("");
-    const [ratingStyle, setRatingStyle] = useState({}); // used to hide and show rating on toggle
-    const [hideReviewToggle, setHideReviewToggle] = useState(false); // disable review input
+    const CLEAR_REVIEW = ''
+    const CLEAR_RATING = 0
+    const [newRating, setNewRating] = useState(0)
+    const [newReview, setNewReview] = useState("")
+    const [ratingStyle, setRatingStyle] = useState({}) // used to hide and show rating on toggle
+    const [hideReviewToggle, setHideReviewToggle] = useState(false) // disable review input
 
     const validateForm = () => {
-        return newReview !== '' && newRating > 0;
+        return newReview !== '' && newRating > 0
     }
 
     const clearForm = () => {
-        setNewReview(CLEAR_REVIEW);
-        setNewRating(CLEAR_RATING);
+        setNewReview(CLEAR_REVIEW)
+        setNewRating(CLEAR_RATING)
     }
-
 
     // Missing Input Error Messaging
     const onHandleChange = (e) => {
         if (!e.target) {
-            setNewRating(e);
-            return;
+            setNewRating(e)
+            return
         }
 
         e.persist()
         if (e.target.id === "hideNewReview") {
             // toggle 
-            setHideReviewToggle(e.target.checked);
-            clearForm();
-            setRatingStyle(!hideReviewToggle ? {visibility: 'hidden'} : {});
-            return;
+            setHideReviewToggle(e.target.checked)
+            clearForm()
+            setRatingStyle(!hideReviewToggle ? {visibility: 'hidden'} : {})
+            return
         } 
-
         // record the text the user typed
-        setNewReview(e.target.value);
+        setNewReview(e.target.value)
     }
 
     const onCancel = () => {
-        setHideReviewToggle(false);
-        clearForm();
-        props.onCancel();
+        setHideReviewToggle(false)
+        clearForm()
+        props.onCancel()
         setRatingStyle({})
     }
 
 
-    if (!props.visible) return null;
+    if (!props.visible) return null
     
-    const today = new Date();
+    const today = new Date()
     return (
         <div className="new-review-wrapper">
             <div className="new-review-content md-form">
@@ -90,6 +84,4 @@ const NewReviewCard = (props) => {
 }
 
 
-
-
-export default NewReviewCard;
+export default NewReviewCard
