@@ -78,25 +78,54 @@ const NavBar = (props) => {
         <div className='search-wrapper input-group mb-3'>
           <div className='nav-lead-wrapper'>
             <div className='nav-lead-content'>
-              <i onClick={() => props.setOnFilter(true) } className="fas fa-bars"></i>
+              <i
+                onClick={() => props.setOnFilter(true)}
+                className='fas fa-bars'
+              ></i>
               <button className='home-button' onClick={resetFilter}>
-                <h2>
-                  Boston Caffe Library
-                </h2>
+                <h2>Boston Caffe Library</h2>
               </button>
             </div>
           </div>
           <div className='nav-wrapper-content'>
             <div className='nav-wrapper-options'>
               <form className='search-form' onSubmit={onSearch}>
-                <input type='text' className='form-control' value={searchField} placeholder='Search by title isbn or author...' aria-label='Username' aria-describedby='basic-addon1' onChange={onTextChange}/>
+                <input
+                  type='text'
+                  className='form-control'
+                  value={searchField}
+                  placeholder='Search by title isbn or author...'
+                  aria-label='Username'
+                  aria-describedby='basic-addon1'
+                  onChange={onTextChange}
+                />
                 <div className='input-group-prepend'>
-                    <button className='btn btn-outline-light' type='button' onClick={onSearch} disabled={props.onFilter}>
-                        <svg className='bi bi-search' width='1em' height='1em' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
-                            <path fillRule='evenodd' d='M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z' clipRule='evenodd'/>
-                            <path fillRule='evenodd' d='M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z' clipRule='evenodd'/>
-                        </svg>
-                    </button>
+                  <button
+                    className='btn btn-outline-light'
+                    type='button'
+                    onClick={onSearch}
+                    disabled={props.onFilter}
+                  >
+                    <svg
+                      className='bi bi-search'
+                      width='1em'
+                      height='1em'
+                      viewBox='0 0 16 16'
+                      fill='currentColor'
+                      xmlns='http://www.w3.org/2000/svg'
+                    >
+                      <path
+                        fillRule='evenodd'
+                        d='M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z'
+                        clipRule='evenodd'
+                      />
+                      <path
+                        fillRule='evenodd'
+                        d='M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z'
+                        clipRule='evenodd'
+                      />
+                    </svg>
+                  </button>
                 </div>
               </form>
             </div>
@@ -104,7 +133,7 @@ const NavBar = (props) => {
         </div>
       </div>
     </div>
-    )
+  );
 }
 
 
