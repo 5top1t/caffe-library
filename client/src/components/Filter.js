@@ -21,15 +21,16 @@ const Filter = (props) => {
             }
         }
 
-        if (e.target.form.id === 'author') {
-            userAuthors = checked
-            return
+        switch (e.target.form.id) {
+            case 'author':
+                userAuthors = checked
+                break
+            case 'year':
+                userYears = checked
+                break
+            default:
+                unavailable = checked.length ? true : false;
         }
-        if (e.target.form.id === 'year') {
-            userYears = checked
-            return;
-        }
-        unavailable = checked.length ? true : false;
     }
 
     if (!props.show) return (
