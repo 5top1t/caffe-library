@@ -25,7 +25,7 @@ const Filter = (props) => {
             userAuthors = checked
             return
         }
-        if (e.target.form.id === 'years') {
+        if (e.target.form.id === 'year') {
             userYears = checked
             return;
         }

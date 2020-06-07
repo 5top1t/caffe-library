@@ -1,0 +1,35 @@
+.home-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 30px auto 0 auto;
+}
+
+
+.home-btn-content {
+    display: flex;
+    width: 70%;
+    justify-content: flex-end;
+}
+
+
+.lost-404-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+
+.lost-404-content {
+    margin: 30px auto;
+    text-align: center;
+}
+
+
+.lost-404-lead {
+    font-size: 48px;
+    color: #a8dadc;
+}
+
+.lost-404-info {
+    font-size: 18px;
+}

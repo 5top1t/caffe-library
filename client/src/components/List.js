@@ -30,7 +30,6 @@ import api from '../api'
  */
 const List = (props) => {
   const history = useHistory()
-  
   useEffect(() => {
     // Build url query param for the backend
     var a = props.queryAuthors.join('&a=')

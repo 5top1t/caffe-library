@@ -2,5 +2,4 @@
 export const HOME = '/';
 export const BOOKS = '/books';
 export const SEARCH = '/books/search'
-export const ADD = '/add';
 export const VIEW = '/book/view/:isbn';

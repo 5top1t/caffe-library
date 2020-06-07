@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useCallback} from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { useHistory } from "react-router-dom"
@@ -14,11 +14,7 @@ import '../styles/Pagination.css'
 const Pagination = (props) => {
     const BOOKS_PER_PAGE = 18
     const history = useHistory()
-    const [pages, setPages] = useState([])
-
-    useEffect(() => {
-        setPages(generatePages(props.page, Math.ceil(props.count / BOOKS_PER_PAGE), props.setPage))
-    }, [props.count, props.page])
+    // const [pages, setPages] = useState([])
 
     /**
      * returns an array of text for pagination buttons
@@ -60,7 +56,7 @@ const Pagination = (props) => {
     }
 
     /**
-     *   render current page number
+     * Current page
      */
     const activePage = (page) => {
         return (
@@ -97,6 +93,15 @@ const Pagination = (props) => {
         queryDict.pg = page
         history.push(history.location.pathname + '?'+ queryString.stringify(queryDict))
     }
+
+    const pages = useCallback(
+        generatePages(
+        props.page,
+        Math.ceil(props.count / BOOKS_PER_PAGE),
+        props.setPage
+        ),
+        [props.count, props.page]
+    );
 
     return (
         <nav className='paginationWrapper'>

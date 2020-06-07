@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useHistory } from "react-router-dom"
+import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import 'materialize-css'
@@ -81,8 +81,8 @@ const View = (props) => {
     return (
         <div>
             <div className='home-btn-wrapper'>
-                <div className="home-btn-content">
-                     <button onClick={() => goHome()} type="button" className="btn btn-light btn-lrg">Go Home</button>
+                <div className='home-btn-content'>
+                     <button onClick={() => goHome()} type='button' className='btn btn-light btn-lrg'>Go Home</button>
                 </div>
             </div>
             <div className='view-book-wrapper'>
@@ -104,8 +104,8 @@ const View = (props) => {
                         </div>
                         <hr></hr>
                         <div className='view-book-buttons'>
-                            <button type="button" className="btn btn-warning" disabled={bookInfo.available <= 0} onClick={onRentBook}>Rent</button>
-                            <button type="button" className="btn btn-warning" disabled={bookInfo.copies <= bookInfo.available && !isReviewVisible} onClick={onShowReview}>Return</button>
+                            <button type='button' className='btn btn-warning' disabled={bookInfo.available <= 0} onClick={onRentBook}>Rent</button>
+                            <button type='button' className='btn btn-warning' disabled={bookInfo.copies <= bookInfo.available && !isReviewVisible} onClick={onShowReview}>Return</button>
                         </div>
                         <hr></hr>
                         <ReviewCardContainer reviews={reviews} visible={isReviewVisible} onCancel={onCancelReturn} onSubmit={onReturnBook}/>
