@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Footer } from '../components'
 
-import '../styles/404.css'
+import '../static/styles/404.css'
 
 const Lost_404 = (props) => {
     const history = useHistory()

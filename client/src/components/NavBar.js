@@ -10,7 +10,7 @@ import {
   setUserPublicationYearsFilter,
   setUserAuthorsFilters
 } from '../actions/bookActions'
-import '../styles/Nav.css'
+import '../static/styles/Nav.css'
 
 /**
  * 

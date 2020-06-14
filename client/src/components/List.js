@@ -63,14 +63,16 @@ const List = (props) => {
 
 
   return (
-    <Filter show={props.onFilter} onClose={onCloseSideBar} authors={[]}>
-      <BookCardContainer>
-        {props.books.map(book => (
-            <BookCard key={book.isbn} book={book}></BookCard>
-        ))}
-      </BookCardContainer>
-      <Pagination page={props.page} count={props.count}/>
-    </Filter>
+    <div>
+        <Filter show={props.onFilter} onClose={onCloseSideBar} authors={[]}/>
+        <BookCardContainer>
+          {props.books.map(book => (
+              <BookCard key={book.isbn} book={book}></BookCard>
+          ))}
+        </BookCardContainer>
+        <Pagination page={props.page} count={props.count}/>
+    </div>
+
   )
 }
 

@@ -7,7 +7,7 @@ import { Footer, ReviewCardContainer } from '../components'
 
 import ReactStars from 'react-stars'
 import api from '../api'
-import '../styles/View.css'
+import '../static/styles/View.css'
 
 
 const View = (props) => {

@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom"
 import queryString from 'query-string'
 import { setPage } from '../actions/bookActions'
 
-import '../styles/Pagination.css'
+import '../static/styles/Pagination.css'
 
 /**
  * 

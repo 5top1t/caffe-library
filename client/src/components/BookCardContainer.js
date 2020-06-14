@@ -4,7 +4,7 @@
  */
 
 import React from 'react'
-import '../styles/BookCard.css'
+import '../static/styles/BookCard.css'
 
 /**
  * 

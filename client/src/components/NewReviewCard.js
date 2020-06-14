@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ReactStars from 'react-stars'
-import '../styles/View.css'
+import '../static/styles/View.css'
 
 /**
  * 
