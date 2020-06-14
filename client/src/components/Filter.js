@@ -44,7 +44,7 @@ const Filter = (props) => {
         <div className='filter-wrapper-content'>
           <div className='filter-close-wrapper'>
             <a
-              href='#'
+              href='/#'
               onClick={() => props.onClose(unavailable, userAuthors, userYears)}
             >
               <i className='fas fa-times'></i>

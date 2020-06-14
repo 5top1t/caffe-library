@@ -14,10 +14,10 @@ const Tutorial = (props) => {
     const features = [
       {
         url: Home,
-        title: 'Browse Collection',
+        title: (<a className='lead' href='/books'>Browse Collection</a>),
         id: 'home',
         lead:
-          'Welcome to the ' + (<div>Boston Caffe Library. Cafes </div>) +
+          'Welcome to the Boston Caffe Library. Cafes ' +
           'have become a popular place for work in the last ' +
           'decade. After noticing that remarkable number ' +
           'of people enjoying their books, I envisioned cafes ' +
@@ -92,15 +92,15 @@ const Tutorial = (props) => {
     ];
 
     return (
-      <div className='about-page-wrapper'>
-        <div className='about-page-content'>
-          <div className='about-page-nav'>
-            <div className='about-page-brand'>
+      <div className='tutorial-page-wrapper'>
+        <div className='tutorial-page-content'>
+          <div className='tutorial-page-nav'>
+            <div className='tutorial-page-brand'>
               <span>Tutorial</span>
             </div>
           </div>
-          <div className='about-page-features-wrapper'>
-            <div className='about-page-features-content'>
+          <div className='tutorial-page-features-wrapper'>
+            <div className='tutorial-page-features-content'>
               {features.map(feature => {
                 return featureCard(
                   feature.url,
@@ -112,7 +112,7 @@ const Tutorial = (props) => {
             </div>
           </div>
         </div>
-        <div className='about-page-jumper'>
+        <div className='tutorial-page-jumper'>
           <ul>
             <li className='jumper-header'>Features</li>
             <li>
@@ -135,7 +135,6 @@ const Tutorial = (props) => {
             </li>
           </ul>
           <div className='jumper-footer'>
-            <a href='/books'>browse collection</a>
             <p>
               built by{' '}
               <a

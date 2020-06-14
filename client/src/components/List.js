@@ -16,8 +16,7 @@ import {
     setUserPublicationYearsFilter
   } from '../actions'
 
-import {
-  BookCard, 
+import { 
   BookCardContainer, 
   Filter, 
   Pagination  } from '.'
@@ -61,18 +60,12 @@ const List = (props) => {
     history.push(history.location.pathname + '?'+ queryString.stringify(queryDict))
   }
 
-
   return (
     <div>
         <Filter show={props.onFilter} onClose={onCloseSideBar} authors={[]}/>
-        <BookCardContainer>
-          {props.books.map(book => (
-              <BookCard key={book.isbn} book={book}></BookCard>
-          ))}
-        </BookCardContainer>
+        <BookCardContainer books={props.books}/>
         <Pagination page={props.page} count={props.count}/>
     </div>
-
   )
 }
 

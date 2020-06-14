@@ -23,7 +23,8 @@ hr {
     text-align: center;
     width: 150px;
     font-size: 16px;
-    color: #e63946;
+    font-weight: 600;
+    color: #ff6b6b;
     /* animation-name: animate-link;
     animation-duration: 4s;
     animation-iteration-count:infinite; */

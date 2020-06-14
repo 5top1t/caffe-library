@@ -19,6 +19,12 @@
     flex-flow: row wrap;
     justify-content: center;
 }
+.no-result {
+    font-size: 24px;
+    font-weight: 500;
+    color: #ff6b6b;
+    margin-top: 100px;
+}
 
 .section-break {
     width: 80%;

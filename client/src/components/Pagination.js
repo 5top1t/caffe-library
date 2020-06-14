@@ -47,10 +47,10 @@ const Pagination = (props) => {
         }
         
         // create next link
-        if (page !== totalPages) {
-            pagination.push(abledPage(NEXT, page + 1, setPage))
+        if (page >= totalPages) {
+            pagination.push(disabledPage(NEXT, NEXT));       
         } else {
-            pagination.push(disabledPage(NEXT, NEXT))    
+            pagination.push(abledPage(NEXT, page + 1, setPage))  
         }
         return pagination
     }
@@ -61,7 +61,10 @@ const Pagination = (props) => {
     const activePage = (page) => {
         return (
             <div key={page} className="page-btn">
-                <button type="button" className="btn btn-dark" disabled>{page.toString()}</button>
+                <button 
+                type="button" 
+                className="btn btn-dark" 
+                disabled>{page.toString()}</button>
             </div>
         )
     }
@@ -82,16 +85,21 @@ const Pagination = (props) => {
      */
     const abledPage = (label, page) => {
         return (
-            <div key={label} className="page-btn">
-                <button type="button" className="btn btn-link" onClick={() => navigateToPage(page)}>{label}</button> 
-            </div>
-        )
+          <div key={label} className='page-btn'>
+            <a
+              className='btn btn-link'
+              href={navigateToPage(page)}
+            >
+              {label}
+            </a>
+          </div>
+        );
     }
 
     const navigateToPage = (page) => {
         var queryDict = queryString.parse(history.location.search)
         queryDict.pg = page
-        history.push(history.location.pathname + '?'+ queryString.stringify(queryDict))
+        return history.location.pathname + '?'+ queryString.stringify(queryDict)
     }
 
     const pages = useCallback(
