@@ -67,15 +67,25 @@
 
 .book-card-info {
     text-align: left;
-    padding: 10px 25px;
+    padding: 0px 25px;
     width: calc(250px + 1vw);
     height: auto;
 }
 
+.book-card-content > a {
+    margin: 10px;
+}
 
 .book-card-title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
+    color: #000;
+
+}
+
+.book-card-title:hover {
+    color: #cb997e;
+    text-decoration: none;
 }
 
 
@@ -118,5 +128,16 @@
 @media only screen and (max-width: 1100px) {
   .card-container-books {
         width: 520px;
+    }
+}
+
+/*
+    Vertically align nave
+*/
+@media only screen and (max-width: 940px) {
+    .card-container-wrapper {
+        display: block;
+        width: 100%;
+        margin-top: 200px;
     }
 }

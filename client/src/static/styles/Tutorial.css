@@ -10,7 +10,7 @@
 */
 
 .tutorial-page-jumper {
-    position: relative;
+    position: fixed;
     right: 0;
     width: 250px;
     background-color: #edf2f4;
@@ -40,7 +40,7 @@
 }
 
 .tutorial-page-jumper > ul > li > a:hover {
-    color: #ed6a5a;
+    color: #cb997e;
 }
 
 .jumper-footer {
@@ -59,7 +59,7 @@
 .lead, .lead:hover {
     font-size: 24px;
     font-weight: 500;
-    color: #e63946;
+    color: #cb997e;
     text-decoration: none;
 }
 
@@ -76,7 +76,7 @@
     flex-flow: row wrap;
     width: 100%;
     box-shadow: 5px 0 5px -1px #aaa;
-    /* margin-right: 250px; */
+    margin-right: 250px;
 }
 
 

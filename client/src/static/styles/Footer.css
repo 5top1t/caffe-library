@@ -19,19 +19,16 @@ hr {
     color: #adb5bd;
 }
 
-.footer-link {
+.footer-link, .footer-link:hover {
     text-align: center;
     width: 150px;
     font-size: 16px;
     font-weight: 600;
-    color: #ff6b6b;
+    color: #cb997e;
+    text-decoration: none;
     /* animation-name: animate-link;
     animation-duration: 4s;
     animation-iteration-count:infinite; */
-}
-
-.footer-link:hover {
-    text-decoration: none;
 }
 
 /* The animation code */

@@ -8,7 +8,8 @@ const bookRouter = require('./routes/book');
 const reviewRouter = require('./routes/review');
 
 const app = express();
-const apiPort = 3000;
+const PORT = 3000;
+const HOST = '0.0.0.0'
 
 
 app.use(cors());
@@ -21,6 +22,6 @@ app.use('/api/review', reviewRouter);
 app.use('/api/book', bookRouter);
 
 
-app.listen(apiPort, () => {
-  console.log(`[React Caffe-Library] - Server running on port ${apiPort}`);
+app.listen(PORT, HOST, () => {
+  console.log(`[React Caffe-Library] - Server running on port ${PORT}`);
 });

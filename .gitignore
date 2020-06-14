@@ -35,3 +35,6 @@ yarn-error.log*
 
 # security file
 *.pem
+
+
+npm-debug.log
