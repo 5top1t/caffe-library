@@ -1,16 +1,20 @@
 import React from 'react';
-import '../styles/Footer.css';
+
+import { routes } from '../constants';
+import '../static/styles/Footer.css';
 
 
 const Footer = (props) => {
     return (
-        <div className='footer-wrapper'>
-            <hr></hr>
-            <div className='footer-company'>
-                <p>built by. <a target="_blank" rel="noopener noreferrer" href='https://www.linkedin.com/in/jarryngandjui/'>jarry ngandjui</a></p>
-            </div>
+      <div className='footer-wrapper'>
+        <hr></hr>
+        <div className='footer-content'>
+          <a className='footer-link' href={routes.TUTORIAL} >
+                <p>tutorial</p>
+          </a>
         </div>
-    )
+      </div>
+    );
 }
 
 

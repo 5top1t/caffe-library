@@ -136,7 +136,8 @@
 .check-label {
     display: flex;
     margin: auto 5px;
-    width: auto
+    width: auto;
+    font-size: 14px;
 }
 
 
@@ -150,6 +151,10 @@
     margin: 15px 0;
     flex-flow: row;
     justify-content: space-between;
+}
+
+textarea.form-control {
+    font-size: 14px;
 }
 
 

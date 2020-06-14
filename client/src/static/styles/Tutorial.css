@@ -1,0 +1,178 @@
+.tutorial-page-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    overflow-x: scroll;
+}
+
+/*
+    Jumper
+*/
+
+.tutorial-page-jumper {
+    position: fixed;
+    right: 0;
+    width: 250px;
+    background-color: #edf2f4;
+    height: 100vh;
+    opacity: 0.8;
+    overflow-x: hidden;
+    
+}
+
+.jumper-header {
+    font-weight: 500;
+    margin: 10px auto;
+}
+
+.tutorial-page-jumper > ul {
+    margin: 60px;
+    border-left: 5px solid #457b9d;
+    list-style: none;
+    padding: 0 15px;
+}
+
+.tutorial-page-jumper > ul > li > a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    padding: 0 15px;
+}
+
+.tutorial-page-jumper > ul > li > a:hover {
+    color: #cb997e;
+}
+
+.jumper-footer {
+    position: relative;
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+    text-align: center;
+    bottom: 30px;
+}
+
+.jumper-footer a {
+    text-decoration: none;
+}
+
+.lead, .lead:hover {
+    font-size: 24px;
+    font-weight: 500;
+    color: #cb997e;
+    text-decoration: none;
+}
+
+.jumper-footer > p {
+    font-size: 14px;
+}
+
+/*
+    Tutorial Content
+*/
+
+.tutorial-page-content {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    box-shadow: 5px 0 5px -1px #aaa;
+    margin-right: 250px;
+}
+
+
+/*
+    Nav
+*/
+
+.tutorial-page-nav {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+    padding: 10px 50px;
+}
+
+.tutorial-page-brand {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+
+}
+.tutorial-page-brand > span {
+    text-decoration: none;
+    color: #457b9d;
+    font-size: 36px;
+    font-weight: 500;
+}
+
+/*
+    Feature
+*/
+.tutorial-page-features-wrapper {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    width: 100%;
+    min-width: 750px;
+    padding: auto 5%;
+}
+
+.tutorial-page-features-content {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    width: 100%;
+}
+
+/*
+    Card
+*/
+.feature-card-wrapper {
+    margin: 30px auto;
+    width: 70%;
+}
+
+.feature-card-content {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+/*
+    Title
+*/
+.feature-card-title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    display: flex;
+    color: #888;
+}
+
+
+/*
+    Image
+*/
+
+.feature-card-image {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 10px auto;
+}
+
+.feature-card-image > img{
+    height: 450px;
+    border-radius: 10px;
+}
+
+/*
+    lead
+*/
+.feature-card-lead {
+    font-size: 16px;
+}
+
+hr {
+    width: 70%;
+    border: 1px #e9ecef solid;
+}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import ReactStars from 'react-stars'
-import '../styles/View.css'
+import '../static/styles/View.css'
 
 /**
  * 
@@ -42,6 +42,13 @@ const NewReviewCard = (props) => {
         setNewReview(e.target.value)
     }
 
+    const onSubmit = () => {
+        setHideReviewToggle(false)
+        clearForm()
+        props.onSubmit(newRating, newReview)
+        setRatingStyle({})
+    }
+
     const onCancel = () => {
         setHideReviewToggle(false)
         clearForm()
@@ -73,7 +80,7 @@ const NewReviewCard = (props) => {
                     <textarea value={newReview} className="form-control" aria-label="With textarea" rows="3" onChange={onHandleChange} disabled={hideReviewToggle}></textarea>
                     <div className="new-review-buttons">
                         <button type="button" className="btn btn-danger btn-sm" onClick={() => onCancel()}>Cancel</button>
-                        <button type="button" className="btn btn-success btn-sm" onClick={() => props.onSubmit(newRating, newReview)} disabled={!hideReviewToggle && !validateForm()}>Submit</button>
+                        <button type="button" className="btn btn-success btn-sm" onClick={() => onSubmit() } disabled={!hideReviewToggle && !validateForm()}>Submit</button>
                     </div>
                     
                 </form>     

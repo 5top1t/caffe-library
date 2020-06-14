@@ -10,7 +10,7 @@ import {
   setUserPublicationYearsFilter,
   setUserAuthorsFilters
 } from '../actions/bookActions'
-import '../styles/Nav.css'
+import '../static/styles/Nav.css'
 
 /**
  * 
@@ -73,8 +73,8 @@ const NavBar = (props) => {
 
 
   return (
-    <div>
-      <div className='nav-wrapper'>
+    <div className='nav-wrapper'>
+      <div className='nav-wrapper-center'>
         <div className='search-wrapper input-group mb-3'>
           <div className='nav-lead-wrapper'>
             <div className='nav-lead-content'>
@@ -94,7 +94,7 @@ const NavBar = (props) => {
                   type='text'
                   className='form-control'
                   value={searchField}
-                  placeholder='Search by title isbn or author...'
+                  placeholder='Search by title, isbn, or author...'
                   aria-label='Username'
                   aria-describedby='basic-addon1'
                   onChange={onTextChange}

@@ -7,7 +7,7 @@ import { Footer, ReviewCardContainer } from '../components'
 
 import ReactStars from 'react-stars'
 import api from '../api'
-import '../styles/View.css'
+import '../static/styles/View.css'
 
 
 const View = (props) => {
@@ -21,6 +21,7 @@ const View = (props) => {
     useEffect(() => {
         api.books.getBookByIsbn(props.match.params.isbn).then(res => {
             if (res.data.success) {
+                console.log(res.data)
                 setBookInfo(res.data.data)
                 api.reviews.getReviewsByIsbn(props.match.params.isbn).then(res => {
                     if (res.data.success) {
@@ -35,13 +36,10 @@ const View = (props) => {
                 })
             }
         }).catch(err => {
-            console.log(err)
+            console.log({err})
+            history.push('/404')
         })
     }, [props.match.params.isbn, bookInfo.copies, bookInfo.available])
-
-    const goHome = () => {
-        history.push('/books/search?pg='+ props.page + '&q=' + props.query)
-    }
 
     const onRentBook = () => {
         api.books.rentBookByIsbn(bookInfo.isbn).then(result => {
@@ -79,42 +77,80 @@ const View = (props) => {
     }
 
     return (
-        <div>
-            <div className='home-btn-wrapper'>
-                <div className='home-btn-content'>
-                     <button onClick={() => goHome()} type='button' className='btn btn-light btn-lrg'>Go Home</button>
-                </div>
-            </div>
-            <div className='view-book-wrapper'>
-                <div className='view-book-content'>
-                    <div className='view-image-column'>
-                        <img alt={bookInfo.title} src={bookInfo.image_url_l}/>
-                    </div>    
-                    
-                    <div className='view-book-info'>
-                        <div className='view-book-legend'>
-                            <p className='book-card-title'>{bookInfo.title}</p>
-                            <p className='book-card-author'>by. <i>{bookInfo.author}</i></p>
-                            <p className='book-card-year'>published. <i>{bookInfo.publication_year}</i></p>
-                            <p className='book-card-availability'>copies. <i>{bookInfo.available}</i></p>
-                            <div className='book-rating'>
-                                <ReactStars count={5} value={rating} size={20} color2={'#ffd700'} edit={false}/>
-                                <p className='book-rating-count'>{ratingCount} ratings</p>
-                            </div>
-                        </div>
-                        <hr></hr>
-                        <div className='view-book-buttons'>
-                            <button type='button' className='btn btn-warning' disabled={bookInfo.available <= 0} onClick={onRentBook}>Rent</button>
-                            <button type='button' className='btn btn-warning' disabled={bookInfo.copies <= bookInfo.available && !isReviewVisible} onClick={onShowReview}>Return</button>
-                        </div>
-                        <hr></hr>
-                        <ReviewCardContainer reviews={reviews} visible={isReviewVisible} onCancel={onCancelReturn} onSubmit={onReturnBook}/>
-                    </div>
-                </div>
-            </div>
-            <Footer/>
+      <div>
+        <div className='home-btn-wrapper'>
+          <div className='home-btn-content'>
+            <a
+              href={'/books/search?pg=' + props.page + '&q=' + props.query}
+              className='btn btn-light btn-lrg'
+            >
+              Go Home
+            </a>
+          </div>
         </div>
-    )
+        <div className='view-book-wrapper'>
+          <div className='view-book-content'>
+            <div className='view-image-column'>
+              <img alt={bookInfo.title} src={bookInfo.image_url_l} />
+            </div>
+
+            <div className='view-book-info'>
+              <div className='view-book-legend'>
+                <p className='book-card-title'>{bookInfo.title}</p>
+                <p className='book-card-author'>
+                  by. <i>{bookInfo.author}</i>
+                </p>
+                <p className='book-card-year'>
+                  published. <i>{bookInfo.publication_year}</i>
+                </p>
+                <p className='book-card-availability'>
+                  copies. <i>{bookInfo.available}</i>
+                </p>
+                <div className='book-rating'>
+                  <ReactStars
+                    count={5}
+                    value={rating}
+                    size={20}
+                    color2={'#ffd700'}
+                    edit={false}
+                  />
+                  <p className='book-rating-count'>{ratingCount} ratings</p>
+                </div>
+              </div>
+              <hr></hr>
+              <div className='view-book-buttons'>
+                <button
+                  type='button'
+                  className='btn btn-warning'
+                  disabled={bookInfo.available <= 0}
+                  onClick={onRentBook}
+                >
+                  Rent
+                </button>
+                <button
+                  type='button'
+                  className='btn btn-warning'
+                  disabled={
+                    bookInfo.copies <= bookInfo.available && !isReviewVisible
+                  }
+                  onClick={onShowReview}
+                >
+                  Return
+                </button>
+              </div>
+              <hr></hr>
+              <ReviewCardContainer
+                reviews={reviews}
+                visible={isReviewVisible}
+                onCancel={onCancelReturn}
+                onSubmit={onReturnBook}
+              />
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
 }
 
 const mapStateToProps = (state) => {

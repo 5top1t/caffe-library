@@ -1,0 +1,41 @@
+hr {
+    width: 70%;
+    border: 1px #e9ecef solid;
+}
+
+
+.footer-wrapper {
+    width: 100%;
+    height: 50px;
+    margin: 20px 0 50px 0;
+}
+
+
+.footer-content {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    height: 100%;
+    color: #adb5bd;
+}
+
+.footer-link, .footer-link:hover {
+    text-align: center;
+    width: 150px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #cb997e;
+    text-decoration: none;
+    /* animation-name: animate-link;
+    animation-duration: 4s;
+    animation-iteration-count:infinite; */
+}
+
+/* The animation code */
+@keyframes animate-link {
+  0%   {color:#ff6b6b; left:0px; top:0px;}
+  25%  {color:#f1faee; left:200px; top:0px;}
+  50%  {color:#a8dadc; left:200px; top:200px;}
+  75%  {color:#457b9d; left:0px; top:200px;}
+  100% {color:#1d3557; left:0px; top:0px; }
+}

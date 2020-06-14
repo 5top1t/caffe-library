@@ -108,7 +108,7 @@ getBookByIsbn = async (req, res) => {
           data: book,
         })
     }).catch(error => {      
-      return res.status(400).json({
+      return res.status(404).json({
           success: false,
           error,
           message: 'Error occured!'
