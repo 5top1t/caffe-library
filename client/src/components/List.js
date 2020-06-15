@@ -29,22 +29,43 @@ import api from '../api'
  */
 const List = (props) => {
   const history = useHistory()
+  const {
+    page,
+    query,
+    unavailable,
+    queryAuthors,
+    queryYears,
+    setPublicationYears,
+    setAuthors,
+    setCount,
+    setBooks
+  } = props;
+
   useEffect(() => {
     // Build url query param for the backend
-    var a = props.queryAuthors.join('&a=')
-    var y = props.queryYears.join('&y=')
-    api.books.queryBooks(props.query, props.page, props.unavailable, a, y).then(res => {
+    var a = queryAuthors.join('&a=')
+    var y = queryYears.join('&y=')
+    api.books.queryBooks(query, page, unavailable, a, y).then(res => {
       if (res.data.success) {
-          props.setBooks(res.data.data)
-          props.setCount(res.data.count)
-          props.setPublicationYears(res.data.years)
-          props.setAuthors(res.data.authors)
+          setBooks(res.data.data)
+          setCount(res.data.count)
+          setPublicationYears(res.data.years)
+          setAuthors(res.data.authors)
         }
         window.scrollTo(0, 0)
       }, (err) => {
       console.log({err})
     })
-  }, [props.page, props.query, props.queryAuthors, props.queryYears, props.unavailable])
+  }, [
+    page, 
+    query, 
+    queryAuthors, 
+    queryYears, 
+    unavailable, 
+    setAuthors, 
+    setPublicationYears, 
+    setCount,
+    setBooks])
 
   const onCloseSideBar = (unavailable, authors, publication_years) => {
     var unavailableChanged = props.unavailable === !unavailable;

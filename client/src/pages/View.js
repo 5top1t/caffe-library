@@ -12,6 +12,7 @@ import '../static/styles/View.css'
 
 const View = (props) => {
     const history = useHistory()
+    const isbn = props.match.params.isbn;
     const [bookInfo, setBookInfo] = useState({})
     const [reviews, setReviews] = useState([])
     const [isReviewVisible, setIsReviewVisible] = useState(false)
@@ -19,16 +20,15 @@ const View = (props) => {
     const [ratingCount, setRatingCount] = useState(0)
 
     useEffect(() => {
-        api.books.getBookByIsbn(props.match.params.isbn).then(res => {
+        api.books.getBookByIsbn(isbn).then(res => {
             if (res.data.success) {
-                console.log(res.data)
                 setBookInfo(res.data.data)
-                api.reviews.getReviewsByIsbn(props.match.params.isbn).then(res => {
+                api.reviews.getReviewsByIsbn(isbn).then(res => {
                     if (res.data.success) {
                         setReviews(res.data.data)
                     }
                 })
-                api.reviews.getRatingByIsbn(props.match.params.isbn).then(res => {
+                api.reviews.getRatingByIsbn(isbn).then(res => {
                     if (res.data.success) {
                         setRating(res.data.rating)
                         setRatingCount(res.data.count)
@@ -39,7 +39,7 @@ const View = (props) => {
             console.log({err})
             history.push('/404')
         })
-    }, [props.match.params.isbn, bookInfo.copies, bookInfo.available])
+    }, [isbn, history, bookInfo.copies, bookInfo.available])
 
     const onRentBook = () => {
         api.books.rentBookByIsbn(bookInfo.isbn).then(result => {

@@ -54,6 +54,11 @@
     width: 40%;
 }
 
+.book-card-title:hover {
+    text-decoration: none;
+    color: #000;
+}
+
 
 /*
     Rating CSS
