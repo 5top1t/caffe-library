@@ -54,7 +54,7 @@
     width: 40%;
 }
 
-.book-card-title:hover {
+.view-title:hover {
     text-decoration: none;
     color: #000;
 }

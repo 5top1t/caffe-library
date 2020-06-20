@@ -7,7 +7,7 @@ db.createUser({
       db: "cscl"
     }
   ]
-});
+})
 
-db.books.createIndex({ isbn: 1, copies: 1});
-db.reviews.createIndex({ _id: 1 }, { unique: true });
+db.books.createIndex({ isbn: 1, copies: 1})
+db.reviews.createIndex({ _id: 1 }, { unique: true })

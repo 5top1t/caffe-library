@@ -96,7 +96,7 @@ const View = (props) => {
 
             <div className='view-book-info'>
               <div className='view-book-legend'>
-                <p className='book-card-title'>{bookInfo.title}</p>
+                <p className='book-card-title view-title'>{bookInfo.title}</p>
                 <p className='book-card-author'>
                   by. <i>{bookInfo.author}</i>
                 </p>

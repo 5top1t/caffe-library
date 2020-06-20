@@ -5,7 +5,6 @@ getBooks = async (req, res) => {
   return queryBooks(req, res)
 }
 
-
 queryBooks = async (req, res) => {
   /**
    * Query options:
@@ -16,7 +15,7 @@ queryBooks = async (req, res) => {
    * pg: page number int
    */
   // Default values
-  var text = req.query.q || ''
+  var text = req.query.q.trim() || ''
   var authors = req.query.a ||  [/.*/] // regex to match all authors
   var publication_years = req.query.y || [] 
   var unavailable = req.query.unav === 'true' || false
@@ -35,67 +34,40 @@ queryBooks = async (req, res) => {
     publication_years[i] = Number(publication_years[i])
   }
 
-  var size = 18
-  var skip = size * (page - 1)
-  text = text.trim()
+  const SIZE = 18
+  const SKIP = SIZE * (page - 1)
 
-  await Book.aggregate(
-    [
-      {
-        $facet: {
-          "unavailable": [
-            buildQuery(text, authors, publication_years, unavailable),
-            {$group: { _id: null, count: { $sum: 1}}}
-          ],
-          "count": [
-            buildQuery(text, authors, publication_years, unavailable),
-            {$group: { _id: null, count: { $sum: 1}}}
-          ],
-          "authors": [
-            buildQuery(text, authors, publication_years, unavailable),
-            {$group: { _id: "$author", count: { $sum: 1}}},
-            { $sort : { _id: 1, count: 1 } }
-          ],
-          "years": [
-            buildQuery(text, authors, publication_years, unavailable),
-            {$group: { _id: "$publication_year", count: { $sum: 1}}},
-            { $sort : { _id: 1, count: 1 } }
-          ],
-          "books": [
-            buildQuery(text, authors, publication_years, unavailable),
-            { $sort : { _id: 1, count: 1 }},
-            { $skip : skip },
-            { $limit: size }
-            
-          ]
-        }
-      }
-  ]).then(queryResult => {
-    let result = {
-      books: queryResult[0].books,
-    }
-    result.count = result.books.length
-    result.count = result.books.length? queryResult[0].count[0].count : 0
-    result.authors = result.books.length? queryResult[0].authors : []
-    result.years = result.books.length? queryResult[0].years : []
-    return res
-      .status(200)
-      .json({
-        success: true,
-        count: result.count,
-        data: result.books,
-        years: result.years,
-        authors: result.authors
-      })
-  }).catch(error => {      
-      console.log({error})
-      return res.status(400).json({
+  try {
+        let data = null;
+        let candidateQueries = new Set(
+          [text]
+            .concat(text.split(' '))
+            .concat(text.split(','))
+            .concat(text.split('.'))
+        );
+        let searchSpace = Array.from(candidateQueries);
+        // Using this value we only explore the first n candidate queries
+        // to prevent timeouts
+        let searchCount = 9;
+        let i = 0;
+        do {
+          data = await queryDB(
+            searchSpace[i++],
+            authors,
+            publication_years,
+            unavailable,
+            SKIP,
+            SIZE
+          );
+        } while (!data.count && i < searchSpace.length && i < searchCount);
+        return res.status(200).json({ ...data });
+      } 
+  catch (error) {
+        return res.status(400).json({
           success: false,
-          error,
-          message: 'Error occured!'
-        })
-    }
-  )
+          error
+    })
+  }
 }
 
 getBookByIsbn = async (req, res) => {
@@ -182,7 +154,6 @@ returnBook = async (req, res) => {
           })
       })
   }).catch(error => {
-      console.log(error)
       return res.status(400).json({
           success: false,
           error,
@@ -213,14 +184,68 @@ deleteBook = async (req, res) => {
 }
 
 
+
 /**
  * 
  * @param {string} text 
  * @param {array} authors 
- * @param {arrya} publication_years 
+ * @param {array} publication_years 
+ * @param {bool} unavailable 
+ * @param {int} skip 
+ * @param {int} size
+ * 
+ * returns a books given the text and filter paramns
+ */
+const queryDB = async (text, authors, publication_years, unavailable, skip, size) => {
+  let queryResult = await Book.aggregate([
+    {
+      $facet: {
+        unavailable: [
+          buildQuery(text, authors, publication_years, unavailable),
+          { $group: { _id: null, count: { $sum: 1 } } }
+        ],
+        count: [
+          buildQuery(text, authors, publication_years, unavailable),
+          { $group: { _id: null, count: { $sum: 1 } } }
+        ],
+        authors: [
+          buildQuery(text, authors, publication_years, unavailable),
+          { $group: { _id: '$author', count: { $sum: 1 } } },
+          { $sort: { _id: 1, count: 1 } }
+        ],
+        years: [
+          buildQuery(text, authors, publication_years, unavailable),
+          { $group: { _id: '$publication_year', count: { $sum: 1 } } },
+          { $sort: { _id: 1, count: 1 } }
+        ],
+        books: [
+          buildQuery(text, authors, publication_years, unavailable),
+          { $sort: { _id: 1, count: 1 } },
+          { $skip: skip },
+          { $limit: size }
+        ]
+      }
+    }
+  ])
+  let result = {
+    data: queryResult[0].books
+  }
+  result.count = result.data.length;
+  result.count = result.data.length ? queryResult[0].count[0].count : 0;
+  result.authors = result.data.length ? queryResult[0].authors : [];
+  result.years = result.data.length ? queryResult[0].years : [];
+  result.success = true
+  return result
+}
+
+/**
+ * 
+ * @param {string} text 
+ * @param {array} authors 
+ * @param {array} publication_years 
  * @param {boolean} unavailable 
  * 
- * builds a mongo db query given the filter paramns
+ * returns a mongodb query given the text and filter paramns
  */
 const buildQuery = (text, authors, publication_years, unavailable) => {
   var query = 
@@ -249,8 +274,6 @@ const buildQuery = (text, authors, publication_years, unavailable) => {
   return query
 }
 
-
-
 /*
   check if request has isbn
 */
@@ -273,6 +296,10 @@ checkBody = function(req, res) {
       message: 'You must provide an book.',
     })
   }
+}
+
+function isEmpty(obj) {
+    return Object.keys(obj).length === 0;
 }
 
 module.exports = {
