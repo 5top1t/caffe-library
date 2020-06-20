@@ -47,7 +47,6 @@ const List = (props) => {
     var y = queryYears.join('&y=')
     api.books.queryBooks(query, page, unavailable, a, y).then(res => {
       if (res.data.success) {
-          console.log(res.data)
           setBooks(res.data.data)
           setCount(res.data.count)
           setPublicationYears(res.data.years)
