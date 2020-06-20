@@ -94,6 +94,18 @@ export const setUnavailable = (unavailable) => {
 
 /**
  * 
+ * @param {boolean} isLoading 
+ * 
+ * Trigger showing/hiding the side bar
+ */
+export const setIsLoading = (isLoading) => {
+  return (dispatch) => {
+    dispatch({ type: types.SET_IS_LOADING, isLoading })
+  }
+}
+
+/**
+ * 
  * @param {boolean} show 
  * 
  * Trigger showing/hiding the side bar

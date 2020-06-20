@@ -12,6 +12,7 @@ export const SET_PAGE = "SET_PAGE"
 /**
  * Category, Nav, LIST actions
  */
+export const SET_IS_LOADING = "SET_IS_LOADING"
 export const SET_ON_FILTER = "SET_ON_FILTER"
 export const SET_QUERY = "SET_QUERY"
 export const SET_UNAVAILABLE = "SET_UNAVAILABLE"
