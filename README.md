@@ -1,7 +1,7 @@
 # --- Caffe Library ---
 ## Guide to running application
 
-## Docker
+## Install Docker
 Install missing packages:
 ```
 https://docs.docker.com/docker-for-windows/install/
