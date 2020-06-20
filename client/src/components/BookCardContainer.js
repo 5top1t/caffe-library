@@ -4,15 +4,25 @@
  */
 
 import React from 'react'
-import { BookCard } from '.';
+import { connect } from 'react-redux';
+import { BookCard } from '.'
 import '../static/styles/BookCard.css'
 
 /**
  * 
- * @param {books} props 
+ * @param {books, isLoading} props
  */
 const CardContainer = (props) => {
   const content = (books) => {
+    if (props.isLoading) {
+      return (
+        <div className='loading'>
+          <div className='spinner-border text-light' role='status'>
+            <span className='sr-only'>Loading...</span>
+          </div>
+        </div>
+      );
+    }
     if (!books.length) {
       return (
         <div className='no-result'>
@@ -40,5 +50,8 @@ const CardContainer = (props) => {
   );
 }
 
+const mapStateToProps = (state) => {
+    return { isLoading : state.books.isLoading }
+}
 
-export default CardContainer
+export default connect(mapStateToProps, null)(CardContainer)

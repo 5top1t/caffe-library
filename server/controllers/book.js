@@ -60,7 +60,12 @@ queryBooks = async (req, res) => {
             SIZE
           );
         } while (!data.count && i < searchSpace.length && i < searchCount);
-        return res.status(200).json({ ...data });
+        return res
+          .status(200)
+          // .setHeader('Set-Cookie', 'HttpOnly;Secure;SameSite=Strict') prod
+          .json({
+            ...data
+          });
       } 
   catch (error) {
         return res.status(400).json({

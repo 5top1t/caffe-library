@@ -7,6 +7,7 @@ const initialState = {
   books: [],
   authors: [],
   years: [],
+  isLoading: false,
   onFilter: false,
   filters: {
     unavailable: false,
@@ -46,6 +47,12 @@ const bookReducer = (state = initialState, action) => {
       return {
         ...state,
         query: action.query
+      }
+
+    case types.SET_IS_LOADING:
+      return {
+        ...state,
+        isLoading: action.isLoading
       }
     case types.SET_ON_FILTER:
       return {

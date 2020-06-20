@@ -10,6 +10,7 @@ import {
     setPage, 
     setCount,
     setQuery,
+    setIsLoading,
     setOnFilter,
     setUnavailable,
     setUserAuthorsFilters,
@@ -36,6 +37,7 @@ const List = (props) => {
     queryAuthors,
     queryYears,
     setPublicationYears,
+    setIsLoading,
     setAuthors,
     setCount,
     setBooks
@@ -45,6 +47,7 @@ const List = (props) => {
     // Build url query param for the backend
     var a = queryAuthors.join('&a=')
     var y = queryYears.join('&y=')
+    setIsLoading(true)
     api.books.queryBooks(query, page, unavailable, a, y).then(res => {
       if (res.data.success) {
           setBooks(res.data.data)
@@ -53,7 +56,9 @@ const List = (props) => {
           setAuthors(res.data.authors)
         }
         window.scrollTo(0, 0)
+        setIsLoading(false);
       }, (err) => {
+      setIsLoading(false);
       console.log({err})
     })
   }, [
@@ -64,6 +69,7 @@ const List = (props) => {
     unavailable, 
     setAuthors, 
     setPublicationYears, 
+    setIsLoading,
     setCount,
     setBooks])
 
@@ -112,6 +118,7 @@ const mapDispatchToProps = dispatch => {
     setPage, 
     setCount, 
     setQuery, 
+    setIsLoading,
     setOnFilter,
     setUnavailable,
     setUserAuthorsFilters,
