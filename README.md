@@ -1,5 +1,5 @@
 # --- Caffe Library ---
-## Guide to running application
+## Guide to running the application
 
 ## Install Docker
 Install missing packages:
@@ -12,7 +12,7 @@ https://docs.docker.com/docker-for-windows/install/
 https://docs.docker.com/compose/install/
 ```
 
-## Running Locally
+## dev
 In a terminal window, navigate to the project dir:
 ```
 $ cd caffe-library/
