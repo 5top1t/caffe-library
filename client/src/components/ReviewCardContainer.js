@@ -16,13 +16,13 @@ const ReviewCardContainer = (props) => {
         ))
         //console.log(props.reviews)
     } else {
-        reviews = 'This book has not been reviewed.'
+        reviews = (<i>This book has not been reviewed</i>)
     }
 
     return (
             <div className='review-container-wrapper'>
                 <div className='review-container-header'>
-                    <p><strong>Reviews</strong></p>
+                    <p>Reviews</p>
                 </div>
                 <div className='review-contianer-content'>
                     <NewReviewCard 

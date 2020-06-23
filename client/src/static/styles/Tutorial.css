@@ -1,8 +1,9 @@
 .tutorial-page-wrapper {
     display: flex;
     flex-flow: row nowrap;
+    height: 100vh;
     width: 100%;
-    overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 /*
@@ -10,8 +11,6 @@
 */
 
 .tutorial-page-jumper {
-    position: fixed;
-    right: 0;
     width: 250px;
     background-color: #edf2f4;
     height: 100vh;
@@ -59,7 +58,7 @@
 .lead, .lead:hover {
     font-size: 24px;
     font-weight: 500;
-    color: #cb997e;
+    color: #457b9d;;
     text-decoration: none;
 }
 
@@ -76,32 +75,7 @@
     flex-flow: row wrap;
     width: 100%;
     box-shadow: 5px 0 5px -1px #aaa;
-    margin-right: 250px;
-}
-
-
-/*
-    Nav
-*/
-
-.tutorial-page-nav {
-    display: flex;
-    flex-flow: column wrap;
-    width: 100%;
-    padding: 10px 50px;
-}
-
-.tutorial-page-brand {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-
-}
-.tutorial-page-brand > span {
-    text-decoration: none;
-    color: #457b9d;
-    font-size: 36px;
-    font-weight: 500;
+    overflow-y: scroll;
 }
 
 /*
@@ -112,7 +86,6 @@
     flex-flow: row;
     justify-content: center;
     width: 100%;
-    min-width: 750px;
     padding: auto 5%;
 }
 
@@ -169,10 +142,12 @@
     lead
 */
 .feature-card-lead {
+    width: 100%;
     font-size: 16px;
 }
 
 hr {
     width: 70%;
     border: 1px #e9ecef solid;
+    margin: 50px auto 20px auto;
 }

@@ -25,8 +25,8 @@
 }
 
 .loading > .spinner-border {
-    width: 14rem;
-    height: 14rem;
+    width: 10rem;
+    height: 10rem;
 }
 
 
@@ -90,13 +90,17 @@
 .book-card-title {
     font-size: 16px;
     font-weight: 600;
-    color: #000;
-
+    color: #988;
+    margin: 10px auto;
 }
 
-.book-card-title:hover {
-    color: #cb997e;
-    text-decoration: none;
+.book-card-title-text {
+    color: #988;
+}
+
+.book-card-title-text:hover {
+    color: #988;
+    text-decoration: underline;
 }
 
 

@@ -7,6 +7,7 @@
     min-height: 90px;
     top: 0;
     background-color:  #457b9d;
+    box-shadow: 10px 0 50px -2px #888;
 }
 
 .nav-wrapper-center {
@@ -100,4 +101,13 @@
     .nav-wrapper-center {
         width: 480px;
     }
+}
+
+/* The animation code */
+@keyframes animate-link {
+  0%   {color:#ff6b6b; left:0px; top:0px;}
+  25%  {color:#f1faee; left:200px; top:0px;}
+  50%  {color:#a8dadc; left:200px; top:200px;}
+  75%  {color:#457b9d; left:0px; top:200px;}
+  100% {color:#1d3557; left:0px; top:0px; }
 }
