@@ -33,7 +33,7 @@
 .no-result {
     font-size: 24px;
     font-weight: 500;
-    color: #cb997e;
+    color: #b8d8ba;
     margin-top: 100px;
 }
 
@@ -95,11 +95,11 @@
 }
 
 .book-card-title-text {
-    color: #988;
+    color: #000;
 }
 
 .book-card-title-text:hover {
-    color: #988;
+    color: #000;
     text-decoration: underline;
 }
 

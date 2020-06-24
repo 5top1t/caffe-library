@@ -4,7 +4,7 @@ import '../static/styles/Filter.css'
 
 /**
  * 
- * @param {*ss} props 
+ * @param {*} props 
  */
 const Filter = (props) => {
     var userAuthors = []

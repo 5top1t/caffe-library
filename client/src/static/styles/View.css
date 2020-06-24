@@ -134,6 +134,7 @@
     flex-flow: row;
     justify-content: flex-start;
     height: auto;
+    margin-bottom: 20px;
 }
 
 
@@ -150,23 +151,22 @@
     font-size: 14px;
 }
 
-
-.new-review-content > textarea {
-    font-size: 14px;
-}
-
-
-.new-review-buttons {
-    display: flex;
-    margin: 15px 0;
-    flex-flow: row;
-    justify-content: space-between;
-}
-
 textarea.form-control {
     font-size: 14px;
 }
 
+.form-word-count {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    text-align: end;
+}
+
+.new-review-buttons {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
 
 /*
     Reviews, 

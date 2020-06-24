@@ -74,8 +74,8 @@ const Tutorial = (props) => {
         title: 'Check out reviews',
         id: 'review',
         lead: `Our policy is free speech. To promote authentic reviews
-           we publicize all book reviews as is. Scroll to read
-           what people really had to say about this book.`
+           we publicize all book reviews as is. Reviews CANNOT be 
+           deleted. Scroll to read what people really had to say about this book.`
       }
     ];
 
@@ -136,7 +136,7 @@ const Tutorial = (props) => {
 
 const featureCard = (imageUrl, id, title, lead) => {
     return (
-      <div id={id} className='feature-card-wrapper' key={title}>
+      <div id={id} className='feature-card-wrapper' key={id}>
         <div className='feature-card-content'>
           <div className='feature-card-title'>
             <span>{title}</span>

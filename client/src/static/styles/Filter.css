@@ -30,7 +30,7 @@
 
 .filter-close-wrapper {
     display: flex;
-    background-color: #457b9d;
+    background-color: #209CEE;
     justify-content: center;
     width: 70px;
     height: 100%;
@@ -152,7 +152,7 @@
 
 
 .label-count {
-    color: #f4a261;
+    color: #b8d8ba;
     text-decoration: underline;
     margin: 0 5px;
 }

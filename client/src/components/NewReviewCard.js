@@ -7,6 +7,7 @@ import '../static/styles/View.css'
  * @param {visible, onSubmit, onCancel} props 
  */
 const NewReviewCard = (props) => {
+    const MIN_REVIEW_LENGTH = 100
     const CLEAR_REVIEW = ''
     const CLEAR_RATING = 0
     const [newRating, setNewRating] = useState(0)
@@ -15,7 +16,28 @@ const NewReviewCard = (props) => {
     const [hideReviewToggle, setHideReviewToggle] = useState(false) // disable review input
 
     const validateForm = () => {
-        return newReview !== '' && newRating > 0
+        console.log(newReview.length)
+        return newReview.length >= MIN_REVIEW_LENGTH && newRating
+    }
+
+    const characterCount = () => {
+        var count = (
+            <div className='form-word-count'>
+            <p className='text-danger'>
+                {
+                    newRating || hideReviewToggle ? '' : 'Give it stars'
+                }
+            </p>
+            <p>
+                {
+                    newReview.length < MIN_REVIEW_LENGTH && !hideReviewToggle ? 
+                        newReview.length + '/' + MIN_REVIEW_LENGTH :
+                        ''
+                }
+            </p>
+            </div>
+        )
+        return count
     }
 
     const clearForm = () => {
@@ -42,12 +64,14 @@ const NewReviewCard = (props) => {
         setNewReview(e.target.value)
     }
 
+
     const onSubmit = () => {
         setHideReviewToggle(false)
         clearForm()
         props.onSubmit(newRating, newReview)
         setRatingStyle({})
     }
+
 
     const onCancel = () => {
         setHideReviewToggle(false)
@@ -56,10 +80,10 @@ const NewReviewCard = (props) => {
         setRatingStyle({})
     }
 
-
     if (!props.visible) return null
     
-    const today = new Date()
+    const today = new Date().toUTCString().split(" ")
+
     return (
         <div className="new-review-wrapper">
             <div className="new-review-content md-form">
@@ -73,16 +97,15 @@ const NewReviewCard = (props) => {
                         </div>
                     </div>
                     <div className='review-header'>
-                        <p className='review-date'>{today.getMonth()}-{today.getDay()}-{today.getFullYear()}</p>
+                        <p className='review-date'>{today[2] + " " + today[1] + ", " + today[3]}</p>
                         <div style={ratingStyle} ><ReactStars count={5} value={newRating} size={16} color2={'#ffd700'} onChange={onHandleChange} /></div>
                     </div>
-
                     <textarea value={newReview} className="form-control" aria-label="With textarea" rows="3" onChange={onHandleChange} disabled={hideReviewToggle}></textarea>
+                    {characterCount()}
                     <div className="new-review-buttons">
                         <button type="button" className="btn btn-danger btn-sm" onClick={() => onCancel()}>Cancel</button>
                         <button type="button" className="btn btn-success btn-sm" onClick={() => onSubmit() } disabled={!hideReviewToggle && !validateForm()}>Submit</button>
-                    </div>
-                    
+                    </div> 
                 </form>     
             </div>
             <hr/>

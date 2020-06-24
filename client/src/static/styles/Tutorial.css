@@ -26,7 +26,7 @@
 
 .tutorial-page-jumper > ul {
     margin: 60px;
-    border-left: 5px solid #457b9d;
+    border-left: 5px solid #209CEE;
     list-style: none;
     padding: 0 15px;
 }
@@ -39,7 +39,8 @@
 }
 
 .tutorial-page-jumper > ul > li > a:hover {
-    color: #cb997e;
+    color: #b8d8ba;
+    text-decoration: underline;
 }
 
 .jumper-footer {
@@ -51,14 +52,11 @@
     bottom: 30px;
 }
 
-.jumper-footer a {
-    text-decoration: none;
-}
 
 .lead, .lead:hover {
     font-size: 24px;
     font-weight: 500;
-    color: #457b9d;;
+    color: #209CEE;
     text-decoration: none;
 }
 
@@ -94,6 +92,7 @@
     flex-flow: column nowrap;
     justify-content: center;
     width: 100%;
+    padding-bottom: 100px;
 }
 
 /*
@@ -134,7 +133,7 @@
 }
 
 .feature-card-image > img{
-    height: 450px;
+    width: 100%;
     border-radius: 10px;
 }
 
