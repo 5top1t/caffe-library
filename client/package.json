@@ -24,7 +24,6 @@
   },
   "scripts": {
     "start": "PORT=8000 react-scripts start",
-    "start:prod": "pushstate-server build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
