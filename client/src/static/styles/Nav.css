@@ -101,6 +101,14 @@
     .nav-wrapper-center {
         width: 480px;
     }
+
+    .nav-lead-wrapper {
+        padding: 15px 30px;
+    }
+
+    .nav-wrapper-content {
+        padding: 15px 30px;
+    }
 }
 
 /* The animation code */

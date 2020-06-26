@@ -23,5 +23,5 @@ app.use('/api/book', bookRouter);
 
 
 app.listen(PORT, HOST, () => {
-  console.log(`[React Caffe-Library] - Server running on port ${PORT}`);
+  console.log(`[React Bean-Café API] - Server running on port ${PORT}`);
 });

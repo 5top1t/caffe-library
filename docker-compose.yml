@@ -24,7 +24,7 @@ services:
   # NodeJS Service
   node:
     image: "node:12"
-    container_name: book_server
+    container_name: book_api
     restart: unless-stopped
     user: "node"
     working_dir: /home/node/app
@@ -35,8 +35,6 @@ services:
       - ./server:/home/node/app
     ports:
       - 3000:3000
-    links:
-      - "mongo:database"
     command: "npm start"
     networks:
       - caffe-network
@@ -54,7 +52,23 @@ services:
       - './client:/var/www'
       - '/var/www/node_modules'
     ports:
-      - 8000:8000
+      - 3001:3001
+    links:
+      - "node:"
+    networks:
+      - caffe-network
+  
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: book_server
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx/conf.d/default.conf
     networks:
       - caffe-network
 

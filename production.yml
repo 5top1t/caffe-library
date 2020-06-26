@@ -66,7 +66,7 @@ services:
       - './client:/var/www'
       - '/var/www/node_modules'
     ports:
-      - 8000:8000
+      - 3001:3001
     networks:
       - caffe-network
     deploy:
@@ -75,6 +75,18 @@ services:
         limits:
           cpus: "0.3"
           memory: 210M
+  
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3001:80"
+      - "443:443"
+    networks:
+      - app-network
 
 #Docker Networks
 networks:

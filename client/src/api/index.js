@@ -16,7 +16,6 @@ export const queryBooks = (text, page, unavailable, authors, publication_years) 
   if (authors) url += `&a=${authors}`
   if (publication_years) url += `&y=${publication_years}`
   return api.get(url)
-
 }
 export const getBookByIsbn = isbn => api.get(bookRoute+`/${isbn}`)
 export const insertBook = payload => api.post(bookRoute+`/`, payload)
