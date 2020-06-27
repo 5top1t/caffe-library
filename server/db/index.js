@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 //   });
 
 mongoose
-  .connect('mongodb://cscl:mongo@book_db:27017/cscl', {
+  .connect('mongodb://cscl:mongo@localhost:2717/cscl', {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
