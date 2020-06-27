@@ -9,7 +9,7 @@ const url = process.env.NODE_ENV === 'development'
     : 'beantowncaffe.com'
 
 const api = axios.create({
-  baseURL: 'http://url/api'
+  baseURL: `http://${url}/api`
 })
 
 // Books API
