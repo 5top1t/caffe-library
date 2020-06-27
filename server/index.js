@@ -18,6 +18,17 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 5
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+app.use((req, res, next) => {
+  var allowedOrigin = 'http://beantowncafe.io';
+  var origin = req.headers.origin;
+  if(allowedOrigin === origin){
+       res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.header('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', true);
+  return next();
+})
 app.use('/api/review', reviewRouter);
 app.use('/api/book', bookRouter);
 
