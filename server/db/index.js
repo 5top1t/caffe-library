@@ -1,16 +1,14 @@
 const mongoose = require('mongoose');
 
-// mongoose
-//   .connect('mongodb://cscl:mongo@127.0.0.0:2717/cscl', { useNewUrlParser: true, useUnifiedTopology: true})
-//   .catch(e => {
-//     console.error('Connection error', e.message);
-//   });
-
+// Replace URI with 'mongodb://cscl:mongo@mongo/cscl' on dev
 mongoose
-  .connect('mongodb://cscl:mongo@mongo/cscl', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
+  .connect(
+    'mongodb+srv://cscl:mongo@cluster0-wgigp.mongodb.net/cscl?retryWrites=true&w=majority',
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    }
+  )
   .catch(e => {
     console.error('Connection error', e.message);
   });
