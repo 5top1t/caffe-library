@@ -2,10 +2,10 @@
 FROM node:13.12.0-alpine
 
 # set working directory
-WORKDIR /var/www
+WORKDIR /app
 
 # add `/app/node_modules/.bin` to $PATH
-ENV PATH /var/www/node_modules/.bin:$PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
 # install app dependencies
 COPY package.json ./
@@ -15,6 +15,6 @@ RUN npm install react-scripts@3.4.1 -g --silent
 
 # add app
 COPY . ./
-EXPOSE 3001
+EXPOSE 8000
 # start app
 CMD ["npm", "run", "start"]
