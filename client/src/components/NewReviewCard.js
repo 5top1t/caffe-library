@@ -16,7 +16,6 @@ const NewReviewCard = (props) => {
     const [hideReviewToggle, setHideReviewToggle] = useState(false) // disable review input
 
     const validateForm = () => {
-        console.log(newReview.length)
         return newReview.length >= MIN_REVIEW_LENGTH && newRating
     }
 
