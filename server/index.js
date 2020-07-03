@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 5
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use((req, res, next) => {
+  console.log({req})
   var allowedOrigin = 'beantowncafe.io';
   var origin = req.headers.origin;
   if(origin.includes(allowedOrigin)){
