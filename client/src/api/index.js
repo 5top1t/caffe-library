@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const url = process.env.NODE_ENV === 'development' 
     ? 'localhost:3000'
-    : 'beantowncaffe.io:3001'
+    : 'beantowncaffe.io:3000'
 
 const api = axios.create({
   baseURL: `http://${url}/api`
