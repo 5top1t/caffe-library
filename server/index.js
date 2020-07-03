@@ -21,7 +21,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.use((req, res, next) => {
   var allowedOrigins = ['http://beantowncafe.io', 'https://beantowncafe.io']
   var origin = req.headers.origin
-  if (allowedOrigins.contains(origin)) {
+  if (allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
   }
   next()
