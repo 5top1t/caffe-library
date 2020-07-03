@@ -20,10 +20,9 @@ const Tutorial = (props) => {
           </a>
         ),
         id: 'home',
-        lead: `Welcome to BeanTown Café. The app simulates a 
+        lead: `Welcome to BeanTown Café. The web app simulates a 
           library that continues on the growth of cafes as a 
-          work setting. On this page, you find yourself in the 
-          center that vision. Click on the menu icon to the left 
+          work setting. Click on the menu icon to the left 
           of the Boston Caffe Library banner to use filters. 
           Navigate through the collection of over 1000 books. A 
           white image may appear if there is no image on record for 
@@ -39,7 +38,7 @@ const Tutorial = (props) => {
         url: Filter,
         title: 'Add-on filters',
         id: 'filter',
-        lead: `The application supports filtering by availability, 
+        lead: `The app supports filtering by availability, 
           author, or publication year. Availability defaults to off. 
           It toggles books that are out of stock. Always toggle this 
           when returning a title as it may increase the query result. 
