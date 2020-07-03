@@ -5,10 +5,12 @@
 import axios from 'axios'
 
 const url =
-  process.env.NODE_ENV === 'development' ? 'localhost:3000' : '54.90.37.246';
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : 'https://bostoncaffelibrary.com';
 
 const api = axios.create({
-  baseURL: `http://${url}/api`
+  baseURL: `${url}/api`
 })
 
 // Books API
