@@ -2,7 +2,7 @@
     display: block;
     overflow-x:hidden;
     transition: 0.5s;
-    /* transition: background-position 350ms ease-in; */
+    transition: background-position 350ms ease-in;
 }
 
 
@@ -20,7 +20,9 @@
     display: flex;
     flex-flow: column wrap;
     position: relative;
-    width: 350px;
+    min-width: 200px;
+    width: 100%;
+    max-width: 300px;
     color: #000;
     opacity: 1;
     background-color: #fff;
@@ -192,8 +194,13 @@ hr {
 /* The animation code */
 @keyframes animate-creator {
   0%   {color:#e63946; left:0px; top:0px;}
-  25%  {color:#f1faee; left:200px; top:0px;}
-  50%  {color:#b8d8ba; left:200px; top:200px;}
-  75%  {color:#ffd5c2; left:0px; top:200px;}
-  100% {color:#fde74c; left:0px; top:0px; }
+  20%  {color:#000; left:200px; top:0px;}
+  40%  {color:#b8d8ba; left:200px; top:200px;}
+  60%  {color:#7fe; left:0px; top:200px;}
+  80%  {color:#2c1; left:0px; top:0px; }
+}
+
+@keyframes background-position {
+  from {left: 0px;}
+  to {left: 420px;}
 }

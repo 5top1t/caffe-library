@@ -44,7 +44,7 @@ const Filter = (props) => {
         <div className='filter-wrapper-content'>
           <div className='filter-close-wrapper'>
             <a
-              href='/#'
+              href='#'
               onClick={() => props.onClose(unavailable, userAuthors, userYears)}
             >
               <i className='fas fa-times'></i>
@@ -76,7 +76,7 @@ const Filter = (props) => {
                     rel='noopener noreferrer'
                     href='https://www.linkedin.com/in/jarryngandjui/'
                   >
-                    jarry ngandjui
+                    jarry
                   </a>
                 </p>
               </div>

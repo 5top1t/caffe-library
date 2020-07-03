@@ -17,3 +17,7 @@
 .page-btn {
     margin: 5px;
 }
+
+.page-btn .btn-dark {
+    background-color: #666;
+}
