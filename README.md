@@ -1,5 +1,5 @@
 # --- Caffe Library ---
-## Guide to running the application
+## Guide to running the application locally
 
 ## Install Docker
 Install missing packages:
