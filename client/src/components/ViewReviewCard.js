@@ -9,14 +9,14 @@ import ReactStars from 'react-stars'
  * Use to display a single review
  */
 const ViewReviewCard = (props) => {
-    // let date = props.date.split('T')[0].split('-')
-    let date = new Date(props.date)
+    let date = new Date(props.date).toUTCString().split(' ')
+ 
     return (
       <div className='review-wrapper'>
         <div className='review-content'>
           <div className='review-header'>
             <p className='review-date'>
-              {date.getMonth()}-{date.getDate()}-{date.getFullYear()}
+              {date[2] + " " + date[1] + ", " + date[3]}
             </p>
             <ReactStars
               count={5}

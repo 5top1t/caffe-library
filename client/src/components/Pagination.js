@@ -60,13 +60,12 @@ const Pagination = (props) => {
      */
     const activePage = (page) => {
         return (
-            <div key={page} className="page-btn">
-                <button 
-                type="button" 
-                className="btn btn-dark" 
-                disabled>{page.toString()}</button>
-            </div>
-        )
+          <div key={page} className='page-btn'>
+            <span type='button' className='btn btn-dark'>
+              {page.toString()}
+            </span>
+          </div>
+        );
     }
 
     /**
@@ -74,10 +73,12 @@ const Pagination = (props) => {
      */
     const disabledPage = (page, label) => {
         return (
-            <div key={label} className="page-btn">
-                <button type="button" className="btn btn-light" disabled>{page}</button> 
-            </div>
-        )
+          <div key={label} className='page-btn'>
+            <span type='button' className='btn btn-light'>
+              {page}
+            </span>
+          </div>
+        );
     }
 
     /**

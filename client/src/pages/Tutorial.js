@@ -14,68 +14,56 @@ const Tutorial = (props) => {
     const features = [
       {
         url: Home,
-        title: (<a className='lead' href='/books'>Browse Collection</a>),
+        title: (
+          <a className='lead' href='/books'>
+            Browse Collection
+          </a>
+        ),
         id: 'home',
-        lead:
-          `Welcome to the Boston Caffe Library. Cafes
-           have become a popular place for work in the last
-          decade. After noticing that remarkable number
-          of people enjoying their books, I envisioned cafes
-          functioning as a library. On this page you find yourself
-          in the center that vision. Click on the menu icon to 
-          the left of the Boston Caffe Library banner to use
-          filters. Navigate through the collection of over 1000
-          books. A white image my appear if there is no image
-          on record for the book. Click on the image or white
-          image to select the title.`
+        lead: `Welcome to BeanTown Café. The web app simulates a 
+          library that continues on the growth of cafes as a 
+          work setting. Click on the menu icon to the left 
+          of the Boston Caffe Library banner to use filters. 
+          Navigate through the collection of over 1000 books. A 
+          white image may appear if there is no image on record for 
+          the book. Click on the image or title to select the text.`
       },
       {
         url: Search,
         title: 'Search Bar',
         id: 'search',
-        lead:
-          `Through the search bar you can browse through the 
-          collection of books. Currently search by 
-          title, author or isbn is upported.`
+        lead: `Explore our collection by title, author, or ISBN.`
       },
       {
         url: Filter,
         title: 'Add-on filters',
         id: 'filter',
-        lead:
-          `The application supports three filters. Filter by
-          availibility, author or publication year. 
-          Availibility allows you to displays books which 
-          are out of stock. This option is off by default. 
-          Toggling this option may increase the number of
-          search results. Always toggle this when returning
-          the book. Filtering by author will result only books
-          by the authors selected. Filtering by publication 
-          year will result in books published in the years 
-          selected. Click on the Boston Caffe Library brand 
-          at anytime to reset the query filters.`
+        lead: `The app supports filtering by availability, 
+          author, or publication year. Availability defaults to off. 
+          It toggles books that are out of stock. Always toggle this 
+          when returning a title as it may increase the query result. 
+          Filtering by the author will result in only books by the 
+          authors selected. Filtering by publication year will result 
+          in books published in the years selected. Click on the 
+          BeanTown Café brand at any time to reset the query filters.`
       },
       {
         url: Book,
         title: 'Rent a book',
         id: 'book',
-        lead:
-          `The tile, Eine ganz normal Affare, has been selected.
-            On this page you learn more about a books' and 
-            its history at the library. Informartion regarding 
-            availibility, ratings and reviews can be found here.
-            The Rent button allows you to rent out a book. This 
-            button disables when the book becomes out of stock. 
-            The Return button allows you to return a book to the 
-            library. This button disables when the library has 
-            all its copies in stock.`
+        lead: `Here, the title Eine ganz normal Affare was selected. 
+          Information regarding availability, ratings, and reviews can 
+          be found here. The Rent button allows you to rent out a book. 
+          This button disables when the book becomes out of stock. The 
+          Return button enables you to return a book to the library. 
+          This button disables when the library has all its copies in 
+          stock.`
       },
       {
         url: Rating,
         title: 'Leave a rating',
         id: 'rating',
-        lead:
-          `The return form allows for two types of returns. A 
+        lead: `We support two types of returns. A 
           return with a review and a return without a review. 
           Note that to complete a return with review, you must 
           include a rating and a review.`
@@ -84,21 +72,15 @@ const Tutorial = (props) => {
         url: Review,
         title: 'Check out reviews',
         id: 'review',
-        lead:
-          `Our policy is free speech. To promote authentic reviews
-           we publicize all book reviews as is. Scroll to read
-           what people really had to say about this book.`
+        lead: `Our policy is free speech. To promote authentic reviews
+           we publicize all book reviews as is. Reviews CANNOT be 
+           deleted. Scroll to read what people really had to say about this book.`
       }
     ];
 
     return (
       <div className='tutorial-page-wrapper'>
         <div className='tutorial-page-content'>
-          <div className='tutorial-page-nav'>
-            <div className='tutorial-page-brand'>
-              <span>Tutorial</span>
-            </div>
-          </div>
           <div className='tutorial-page-features-wrapper'>
             <div className='tutorial-page-features-content'>
               {features.map(feature => {
@@ -153,7 +135,7 @@ const Tutorial = (props) => {
 
 const featureCard = (imageUrl, id, title, lead) => {
     return (
-      <div id={id} className='feature-card-wrapper' key={title}>
+      <div id={id} className='feature-card-wrapper' key={id}>
         <div className='feature-card-content'>
           <div className='feature-card-title'>
             <span>{title}</span>

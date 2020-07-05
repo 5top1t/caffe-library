@@ -22,9 +22,12 @@ const BookCard = (props) => {
           />
         </a>
         <div className='book-card-info'>
-          <a href={url} className='book-card-title'>
-            {props.book.title}
-          </a>
+          <div className='book-card-title'>
+            <a href={url} className='book-card-title-text'>
+              {props.book.title}
+            </a>
+          </div>
+
           <p className='book-card-author'>
             by. <i>{props.book.author}</i>
           </p>

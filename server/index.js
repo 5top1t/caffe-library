@@ -18,10 +18,18 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 5
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+app.use((req, res, next) => {
+  var allowedOrigins = ['http://beantowncafe.io', 'https://beantowncafe.io']
+  var origin = req.headers.origin
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  next()
+})
 app.use('/api/review', reviewRouter);
 app.use('/api/book', bookRouter);
 
 
 app.listen(PORT, HOST, () => {
-  console.log(`[React Caffe-Library] - Server running on port ${PORT}`);
+  console.log(`[React Bean-Café API] - Server running on port ${PORT}`);
 });

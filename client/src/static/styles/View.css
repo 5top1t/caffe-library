@@ -12,6 +12,10 @@
     justify-content: flex-end;
 }
 
+.home-btn-content > a {
+    font-weight: 400;
+}
+
 
 .view-book-wrapper {
     width: 100%;
@@ -54,9 +58,10 @@
     width: 40%;
 }
 
-.view-title:hover {
+.view-title {
     text-decoration: none;
     color: #000;
+    font-weight: 600;
 }
 
 
@@ -85,7 +90,7 @@
 
 .view-book-buttons > button {
     margin: 10px;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 
@@ -102,7 +107,7 @@
 
 .review-container-header {
     display: block;
-    font-weight: 1200;
+    font-weight: 600;
 }
 
 
@@ -129,6 +134,7 @@
     flex-flow: row;
     justify-content: flex-start;
     height: auto;
+    margin-bottom: 20px;
 }
 
 
@@ -145,23 +151,22 @@
     font-size: 14px;
 }
 
-
-.new-review-content > textarea {
-    font-size: 14px;
-}
-
-
-.new-review-buttons {
-    display: flex;
-    margin: 15px 0;
-    flex-flow: row;
-    justify-content: space-between;
-}
-
 textarea.form-control {
     font-size: 14px;
 }
 
+.form-word-count {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    text-align: end;
+}
+
+.new-review-buttons {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
 
 /*
     Reviews, 

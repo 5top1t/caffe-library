@@ -1,7 +1,0 @@
-node_modules
-npm-debug.log
-node_modules
-build
-.dockerignore
-Dockerfile
-Dockerfile.prod

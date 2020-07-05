@@ -83,7 +83,7 @@ const NavBar = (props) => {
                 className='fas fa-bars'
               ></i>
               <button className='home-button' onClick={resetFilter}>
-                <h2>Boston Caffe Library</h2>
+                <h2>BeanTown Café</h2>
               </button>
             </div>
           </div>
