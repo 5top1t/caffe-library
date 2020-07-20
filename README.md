@@ -1,4 +1,9 @@
 # --- Caffe Library ---
+## To interact with a the deployment
+```
+https://beantown.io
+```
+
 ## Guide to running the application locally
 
 ## Install Docker
