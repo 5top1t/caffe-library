@@ -1,7 +1,7 @@
 # --- Caffe Library ---
 ## To interact with a the deployment
 ```
-https://beantown.io
+https://beantowncafe.io
 ```
 
 ## Guide to running the application locally
