@@ -1,5 +1,4 @@
 ![BeanTown Café](client/src/static/images/logo.png)
-# --- Caffe Library ---
 ## To interact with a the deployment
 ```
 https://beantowncafe.io
