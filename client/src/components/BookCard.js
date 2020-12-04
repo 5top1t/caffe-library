@@ -4,6 +4,7 @@
 
 import React from 'react'
 import Default from '../static/images/default.png';
+const XMLHttpRequest = require('xhr2');
 
 /**
  * 
