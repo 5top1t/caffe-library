@@ -4,8 +4,13 @@
 
 import axios from 'axios'
 
+const url =
+  process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : 'https://bostoncaffelibrary.com';
+
 const api = axios.create({
-  baseURL: 'http://localhost:3000/api'
+  baseURL: `${url}/api`
 })
 
 // Books API
@@ -16,7 +21,6 @@ export const queryBooks = (text, page, unavailable, authors, publication_years) 
   if (authors) url += `&a=${authors}`
   if (publication_years) url += `&y=${publication_years}`
   return api.get(url)
-
 }
 export const getBookByIsbn = isbn => api.get(bookRoute+`/${isbn}`)
 export const insertBook = payload => api.post(bookRoute+`/`, payload)

@@ -26,7 +26,7 @@ const CardContainer = (props) => {
     if (!books.length) {
       return (
         <div className='no-result'>
-          Sorry... the query could not be found.
+          Sorry... no result could be found
         </div>
       )
     }

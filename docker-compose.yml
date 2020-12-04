@@ -1,11 +1,14 @@
 version: '3.3'
 
 services:
+  # MongoDB Service 
   mongo:
     image: mongo
     container_name: book_db
+    restart: unless-stopped
     ports:
       - 2717:27017
+    tty: true
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=rootPassword
@@ -15,35 +18,57 @@ services:
     volumes:
       - mongodb_data:/data/db
       - ./mongo/seed/:/docker-entrypoint-initdb.d/:ro
+    networks:
+      - caffe-network
+          
+  # NodeJS Service
   node:
     image: "node:12"
-    container_name: book_server
+    container_name: book_api
+    restart: unless-stopped
     user: "node"
     working_dir: /home/node/app
     environment:
-      - NODE_ENV=production
       - CHOKIDAR_USEPOLLING=true
+      - NODE_ENV=development
+      - DB_NAME=cscl
+      - DB_USER=cscl
+      - DB_PASSWORD=mongo
     volumes:
       - ./server:/home/node/app
     ports:
       - 3000:3000
-    links:
-      - "mongo:database"
+
     command: "npm start"
-    
+    networks:
+      - caffe-network
+
+  # ReactJS Service
   react:
     container_name: docker_client
+    restart: unless-stopped
     build:
       context: ./client/
       dockerfile: Dockerfile
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - NODE_ENV=development
     volumes:
       - './client:/app'
       - '/app/node_modules'
     ports:
       - 8000:8000
+    links:
+      - "node:"
+    networks:
+      - caffe-network
 
+#Docker Networks
+networks:
+  caffe-network:
+    driver: bridge
+
+#Volumes
 volumes:
   mongodb_data:
     driver_opts:

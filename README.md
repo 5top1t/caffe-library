@@ -1,6 +1,11 @@
 ![BeanTown Café](client/src/static/images/logo.png)
 # --- Caffe Library ---
-## Guide to running the application
+## To interact with a the deployment
+```
+https://beantowncafe.io
+```
+
+## Guide to running the application locally
 
 ## Install Docker
 Install missing packages:
