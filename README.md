@@ -1,3 +1,4 @@
+![BeanTown Café](client/src/static/images/logo.png)
 # --- Caffe Library ---
 ## Guide to running the application
 
