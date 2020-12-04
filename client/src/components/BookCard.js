@@ -51,10 +51,13 @@ const BookCard = (props) => {
 
 const imageExists = (image_url) => {
   var http = new XMLHttpRequest();
-  http.open('HEAD', image_url, false);
-  http.send();
-  console.log({http})
-  return http.status !== 404;
+  try {
+    http.open('HEAD', image_url, false);
+    http.send();
+    return true
+  } catch (e) {
+    return false
+  }
 }
 
 
