@@ -3,6 +3,7 @@
  */
 
 import React from 'react'
+import Default from '../static/images/default.png';
 
 /**
  * 
@@ -11,6 +12,10 @@ import React from 'react'
 const BookCard = (props) => {
   const url = '/book/view/' + props.book.isbn
 
+  if (!imageExists(props.book.image_url_l)) {
+    props.book.image_url_l = Default
+  }
+  
   return (
     <div className='book-card-wrapper'>
       <div className='book-card-content'>
@@ -41,6 +46,14 @@ const BookCard = (props) => {
       </div>
     </div>
   );
+}
+
+const imageExists = (image_url) => {
+  var http = new XMLHttpRequest();
+  http.open('HEAD', image_url, false);
+  http.send();
+  console.log({http})
+  return http.status !== 404;
 }
 
 
