@@ -33,7 +33,7 @@ queryBooks = async (req, res) => {
   for (let i = 0; i < publication_years.length; i++) {
     publication_years[i] = Number(publication_years[i])
   }
-
+  
   const SIZE = 18
   const SKIP = SIZE * (page - 1)
 
@@ -201,7 +201,7 @@ deleteBook = async (req, res) => {
  * 
  * returns a books given the text and filter paramns
  */
-const queryDB = async (text, authors, publication_years, unavailable, skip, size) => {
+const queryDB = async (text='', authors, publication_years, unavailable, skip, size) => {
   let queryResult = await Book.aggregate([
     {
       $facet: {

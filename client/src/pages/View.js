@@ -22,6 +22,10 @@ const View = (props) => {
     useEffect(() => {
         api.books.getBookByIsbn(isbn).then(res => {
             if (res.data.success) {
+                res.data.data.image_url_l = api.books.getImage(
+                  isbn,
+                  res.data.data.image_url_l
+                );
                 setBookInfo(res.data.data)
                 api.reviews.getReviewsByIsbn(isbn).then(res => {
                     if (res.data.success) {

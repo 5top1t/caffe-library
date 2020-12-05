@@ -15,6 +15,8 @@ prettier.config.js
 # testing
 /coverage
 /testing
+venv/
+*.pyc
 
 # production
 /build
@@ -23,6 +25,7 @@ prettier.config.js
 /mongo/mongodb_data
 
 # misc
+.vscode/
 .DS_Store
 .env.local
 .env.development.local

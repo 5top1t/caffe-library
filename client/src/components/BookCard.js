@@ -3,6 +3,7 @@
  */
 
 import React from 'react'
+import api from '../api'
 
 /**
  * 
@@ -10,6 +11,9 @@ import React from 'react'
  */
 const BookCard = (props) => {
   const url = '/book/view/' + props.book.isbn
+  const { isbn, image_url_l } = props.book
+
+  props.book.image_url_l = api.books.getImage(isbn, image_url_l);
 
   return (
     <div className='book-card-wrapper'>
