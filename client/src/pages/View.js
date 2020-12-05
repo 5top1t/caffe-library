@@ -80,8 +80,6 @@ const View = (props) => {
         setIsReviewVisible(true)
     }
 
-
-
     return (
       <div>
         <div className='home-btn-wrapper'>
