@@ -38,11 +38,14 @@
     height: 100%;
 }
 
-.filter-close-wrapper > a {
+.filter-close-wrapper > button {
+    display: flex;
+    background-color: #209CEE;
+    border: none;
     text-decoration: none;
 }
 
-.filter-close-wrapper > a >  i {
+.filter-close-wrapper > button >  i {
     font-size: 38px;
     margin: 25px 10px;
     color: #fff;

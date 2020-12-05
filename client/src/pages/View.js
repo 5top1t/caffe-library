@@ -18,10 +18,15 @@ const View = (props) => {
     const [isReviewVisible, setIsReviewVisible] = useState(false)
     const [rating, setRating] = useState(0)
     const [ratingCount, setRatingCount] = useState(0)
+    const { image_url_l } = bookInfo;
 
     useEffect(() => {
         api.books.getBookByIsbn(isbn).then(res => {
             if (res.data.success) {
+                res.data.data.image_url_l = api.books.getImage(
+                  isbn,
+                  res.data.data.image_url_l
+                );
                 setBookInfo(res.data.data)
                 api.reviews.getReviewsByIsbn(isbn).then(res => {
                     if (res.data.success) {
@@ -75,6 +80,8 @@ const View = (props) => {
     const onShowReview = () => {
         setIsReviewVisible(true)
     }
+
+
 
     return (
       <div>

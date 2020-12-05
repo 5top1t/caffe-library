@@ -3,8 +3,7 @@
  */
 
 import React from 'react'
-import Default from '../static/images/default.png';
-const XMLHttpRequest = require('xhr2');
+import api from '../api'
 
 /**
  * 
@@ -12,11 +11,10 @@ const XMLHttpRequest = require('xhr2');
  */
 const BookCard = (props) => {
   const url = '/book/view/' + props.book.isbn
+  const { isbn, image_url_l } = props.book
 
-  if (!imageExists(props.book.image_url_l)) {
-    props.book.image_url_l = Default
-  }
-  
+  props.book.image_url_l = api.books.getImage(isbn, image_url_l);
+
   return (
     <div className='book-card-wrapper'>
       <div className='book-card-content'>
@@ -47,17 +45,6 @@ const BookCard = (props) => {
       </div>
     </div>
   );
-}
-
-const imageExists = (image_url) => {
-  var http = new XMLHttpRequest();
-  try {
-    http.open('HEAD', image_url, false);
-    http.send();
-    return true
-  } catch (e) {
-    return false
-  }
 }
 
 

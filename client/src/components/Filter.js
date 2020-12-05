@@ -43,12 +43,11 @@ const Filter = (props) => {
       <div className='filter-wrapper-on'>
         <div className='filter-wrapper-content'>
           <div className='filter-close-wrapper'>
-            <a
-              href='#'
+            <button
               onClick={() => props.onClose(unavailable, userAuthors, userYears)}
             >
               <i className='fas fa-times'></i>
-            </a>
+            </button>
           </div>
           <div className='filter-wrapper-filters'>
             <div className='filter-heading'>
@@ -67,7 +66,7 @@ const Filter = (props) => {
               </form>
             </div>
             <hr></hr>
-            <div className='filter-footer'>
+            {/* <div className='filter-footer'>
               <div className='footer'>
                 <p>
                   built by{' '}
@@ -80,7 +79,7 @@ const Filter = (props) => {
                   </a>
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
           <div
             className='filter-wrapper-opaque'
