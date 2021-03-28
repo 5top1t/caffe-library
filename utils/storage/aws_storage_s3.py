@@ -7,10 +7,7 @@ import urllib.request as urllib
 from botocore.exceptions import ClientError
 import settings
 
-session = boto3.Session(
-    aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
-    aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
-)
+session = boto3.Session(profile_name=settings.AWS_PROFILE,)
 
 MAX_PG = 56
 
@@ -27,16 +24,12 @@ def migrate_images_to_s3():
             im_url_l = book["image_url_l"]
             object_name = get_id(im_url_l)
 
-            # print("isbn", isbn)
-            # print("im_url_l", im_url_l)
-            # print("object_name", object_name)
-            # print("\n")
             upload_book_image_to_s3(
-                                    im_url_l, 
-                                    settings.AWS_STORAGE_BUCKET_NAME,
-                                    isbn,
-                                    object_name
-                )
+                im_url_l, 
+                settings.AWS_STORAGE_BUCKET_NAME,
+                isbn,
+                object_name
+            )
 
 def query_books(page, text="", unavailable='true'):
     route = os.path.join(settings.DOMAIN, "api/book/query/?")
@@ -73,5 +66,3 @@ def upload_book_image_to_s3(url, bucket, isbn, object_name):
 def get_id(url):
     domain = "http://images.amazon.com/images/P/"
     return url.replace(domain, "")
-
-migrate_images_to_s3()
