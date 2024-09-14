@@ -1,7 +1,6 @@
 ![BeanTown Café](client/src/static/images/logo.png)
 
-## Live deployment
-[beantowncafe.io](https://beantowncafe.io)
+Online library of of 1000 books in the public domain that can be rented and returned.
 
 ## Guide to running the application locally
 
