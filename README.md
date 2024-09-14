@@ -1,4 +1,4 @@
-![BeanTown Café](client/src/static/images/logo.png)
+![BeanTown Library](client/src/static/images/logo.png)
 
 Online library of of 1000 books in the public domain that can be rented and returned.
 
@@ -11,7 +11,7 @@ Online library of of 1000 books in the public domain that can be rented and retu
 #### dev
 In a terminal window, navigate to the project dir:
 ```
-$ cd caffe-library/
+$ cd beantownlibrary/
 ```
 then run:
 ```
